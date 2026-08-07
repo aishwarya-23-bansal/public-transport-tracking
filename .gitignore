@@ -1,0 +1,24 @@
+# dependencies
+node_modules/
+
+# environment variables
+.env
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# build files
+dist/
+build/
+
+# OS files
+.DS_Store
+
+# VS Code
+.vscode/
+
+# uploads (optional)
+server/uploads/*
+!server/uploads/.gitkeep
