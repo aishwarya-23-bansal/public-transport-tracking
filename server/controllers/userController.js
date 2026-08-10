@@ -29,7 +29,7 @@ const getProfile = async (req, res) => {
 // Update logged-in user's profile
 const updateProfile = async (req, res) => {
     try {
-        const { name, phone, profileImage } = req.body;
+        const { name, phone, profileImage,  emergencyContactName,emergencyContactPhone } = req.body;
 
         const user = await User.findById(req.user._id);
 
@@ -42,7 +42,12 @@ const updateProfile = async (req, res) => {
         if (name) user.name = name;
         if (phone) user.phone = phone;
         if (profileImage) user.profileImage = profileImage;
-
+        if (emergencyContactName) {
+            user.emergencyContactName = emergencyContactName;
+        }
+        if (emergencyContactPhone) {
+            user.emergencyContactPhone = emergencyContactPhone;
+        }
         const updatedUser = await user.save();
 
         res.status(200).json({

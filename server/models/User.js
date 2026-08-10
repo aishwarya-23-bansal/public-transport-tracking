@@ -31,7 +31,15 @@ const userSchema = new mongoose.Schema(
             enum: ["commuter", "operator", "admin"],
             default: "commuter"
         },
+        emergencyContactName: {
+            type: String,
+            default: ""
+        },
 
+        emergencyContactPhone: {
+            type: String,
+            default: ""
+        },
         profileImage: {
             type: String,
             default: ""
