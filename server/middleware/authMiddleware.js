@@ -2,6 +2,7 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 
 const protect = async (req, res, next) => {
+    console.log("AUTH MIDDLEWARE RUNNING");
     try {
         let token;
 
