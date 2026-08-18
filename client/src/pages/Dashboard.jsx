@@ -253,6 +253,26 @@ function Dashboard() {
 
                                     </div>
                                 </Link>
+                            {/* saved routes */}
+                        <Link
+                            to="/saved-routes"
+                            className="action-card action-link"
+                        >
+                            <div className="action-content">
+
+                                <h3>Saved Routes</h3>
+
+                                <p>
+                                    Quickly access your frequently used
+                                    transport routes.
+                                </p>
+
+                                <span className="action-button">
+                                    View Saved Routes
+                                </span>
+
+                            </div>
+                        </Link>
                     </div>
                 </section>
             </main>

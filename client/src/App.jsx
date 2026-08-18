@@ -8,6 +8,7 @@ import RoutesPage from "./pages/Routes";
 import Alerts from "./pages/Alerts";
 import Notifications from "./pages/Notifications";
 import TripHistory from "./pages/TripHistory";
+import SavedRoutes from "./pages/SavedRoutes";
 
 function App() {
     return (
@@ -24,6 +25,7 @@ function App() {
                 <Route path="/alerts" element={<Alerts />} />
                 <Route path="/notifications" element={<Notifications />} />
                 <Route path="/history" element={<TripHistory />} />
+                <Route path="/saved-routes" element={<SavedRoutes />} />
             </Routes>
 
         </BrowserRouter>

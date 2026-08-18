@@ -2067,3 +2067,57 @@ a {
     font-size: 13px;
     line-height: 1.6;
 }
+/* =========================================
+   SAVED ROUTES
+========================================= */
+
+.saved-routes-page {
+    min-height: 100vh;
+    background: #f8fafc;
+}
+
+.saved-routes-content {
+    width: 92%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 45px 0 60px;
+}
+
+.saved-routes-heading {
+    margin-bottom: 28px;
+}
+
+.saved-routes-heading h1 {
+    margin: 0 0 8px;
+    color: #111827;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.saved-routes-heading p {
+    margin: 0;
+    color: #64748b;
+    font-size: 14px;
+}
+
+.saved-routes-empty {
+    padding: 65px 20px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.saved-routes-empty h3 {
+    margin: 0 0 8px;
+    color: #1e293b;
+    font-size: 17px;
+}
+
+.saved-routes-empty p {
+    max-width: 450px;
+    margin: 0 auto 22px;
+    color: #64748b;
+    font-size: 13px;
+    line-height: 1.6;
+}
