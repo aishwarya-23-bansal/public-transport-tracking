@@ -17,20 +17,14 @@ const handleLogin = async (e) => {
             email,
             password
         });
-
         console.log(response.data);
-
         const token = response.data.token;
-
         localStorage.setItem("token", token);
-
         alert("Login successful!");
-
         navigate("/dashboard");
 
     } catch (error) {
         console.error(error);
-
         alert(
             error.response?.data?.message ||
             "Login failed"
@@ -40,10 +34,9 @@ const handleLogin = async (e) => {
 
     return (
         <div className="login-page">
-
             <div className="login-left">
                 <div className="brand">
-                    <div className="logo">🚍</div>
+                    <div className="logo"></div>
                     <h1>Transit<span>Go</span></h1>
                 </div>
 
@@ -56,9 +49,9 @@ const handleLogin = async (e) => {
                     </p>
 
                     <div className="features">
-                        <div>📍 Real-time route tracking</div>
-                        <div>🎫 Easy ticket booking</div>
-                        <div>⏱️ Smart ETA updates</div>
+                        <div>Real-time route tracking</div>
+                        <div>Easy ticket booking</div>
+                        <div> Smart ETA updates</div>
                     </div>
                 </div>
             </div>
@@ -136,7 +129,6 @@ const handleLogin = async (e) => {
                 </div>
 
             </div>
-
         </div>
     );
 }
