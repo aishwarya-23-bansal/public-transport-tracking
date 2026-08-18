@@ -1,7 +1,3 @@
-/* =========================================
-   GLOBAL
-========================================= */
-
 * {
     box-sizing: border-box;
 }
@@ -2120,4 +2116,171 @@ a {
     color: #64748b;
     font-size: 13px;
     line-height: 1.6;
+}
+/* =========================================
+   OPERATOR DASHBOARD
+========================================= */
+
+.operator-page {
+    min-height: 100vh;
+    background: #f8fafc;
+}
+
+.operator-content {
+    width: 92%;
+    max-width: 1150px;
+    margin: 0 auto;
+    padding: 45px 0 60px;
+}
+
+.operator-heading {
+    margin-bottom: 28px;
+}
+
+.operator-heading h1 {
+    margin: 0 0 8px;
+    color: #111827;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.operator-heading p {
+    margin: 0;
+    color: #64748b;
+    font-size: 14px;
+}
+
+
+/* STATS */
+
+.operator-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 30px;
+}
+
+.operator-stat {
+    padding: 22px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+}
+
+.operator-stat span {
+    display: block;
+    margin-bottom: 10px;
+    color: #64748b;
+    font-size: 12px;
+}
+
+.operator-stat strong {
+    color: #111827;
+    font-size: 24px;
+}
+
+
+/* ROUTES SECTION */
+
+.operator-section {
+    margin-bottom: 25px;
+}
+
+.section-header {
+    margin-bottom: 15px;
+}
+
+.section-header h2 {
+    margin: 0 0 5px;
+    color: #111827;
+    font-size: 20px;
+}
+
+.section-header p {
+    margin: 0;
+    color: #64748b;
+    font-size: 13px;
+}
+
+.operator-empty {
+    padding: 55px 20px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.operator-empty h3 {
+    margin: 0 0 8px;
+    color: #1e293b;
+    font-size: 17px;
+}
+
+.operator-empty p {
+    margin: 0;
+    color: #64748b;
+    font-size: 13px;
+}
+
+
+/* ACTIONS */
+
+.operator-actions {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.operator-action {
+    padding: 22px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: 0.2s ease;
+}
+
+.operator-action:hover {
+    border-color: #bfdbfe;
+    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.06);
+}
+
+.operator-action h3 {
+    margin: 0 0 8px;
+    color: #111827;
+    font-size: 16px;
+}
+
+.operator-action p {
+    margin: 0 0 18px;
+    color: #64748b;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.operator-action span {
+    color: #2563eb;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 800px) {
+
+    .operator-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .operator-actions {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 500px) {
+
+    .operator-stats {
+        grid-template-columns: 1fr;
+    }
 }
