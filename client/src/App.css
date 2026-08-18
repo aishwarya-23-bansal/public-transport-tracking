@@ -569,3 +569,155 @@ body {
         grid-template-columns: 1fr;
     }
 }
+
+/* =========================
+   PROFILE
+========================= */
+
+.profile-page {
+    min-height: 100vh;
+    background: #f5f7fb;
+    padding: 40px 5%;
+}
+
+.profile-header {
+    max-width: 1100px;
+    margin: 0 auto 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profile-header h1 {
+    margin: 0 0 5px;
+}
+
+.profile-header p {
+    margin: 0;
+    color: #718096;
+}
+
+.profile-header button {
+    padding: 10px 18px;
+    border: 1px solid #1769e0;
+    border-radius: 6px;
+    background: white;
+    color: #1769e0;
+    cursor: pointer;
+}
+
+.profile-card {
+    max-width: 1100px;
+    margin: auto;
+    background: white;
+    border-radius: 12px;
+    padding: 35px;
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 45px;
+    border: 1px solid #e5e7eb;
+}
+
+.profile-photo-section {
+    text-align: center;
+    border-right: 1px solid #e5e7eb;
+    padding-right: 35px;
+}
+
+.profile-photo {
+    width: 110px;
+    height: 110px;
+    margin: 0 auto 15px;
+    border-radius: 50%;
+    background: #e8f0ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 50px;
+}
+
+.profile-photo-section h2 {
+    margin: 10px 0 5px;
+}
+
+.profile-photo-section p {
+    color: #718096;
+    margin: 0 0 20px;
+}
+
+.photo-button {
+    padding: 9px 15px;
+    border: 1px solid #1769e0;
+    background: white;
+    color: #1769e0;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.profile-form h2 {
+    margin-top: 0;
+}
+
+.profile-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+.profile-form .input-group {
+    margin-bottom: 18px;
+}
+
+.profile-form input {
+    background: white;
+}
+
+.profile-form input:disabled {
+    background: #f1f3f6;
+    cursor: not-allowed;
+}
+
+.emergency-section {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid #e5e7eb;
+}
+
+.emergency-section h3 {
+    margin-top: 0;
+}
+
+.save-button {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 7px;
+    background: #1769e0;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+@media (max-width: 750px) {
+
+    .profile-card {
+        grid-template-columns: 1fr;
+        gap: 25px;
+        padding: 25px;
+    }
+
+    .profile-photo-section {
+        border-right: none;
+        border-bottom: 1px solid #e5e7eb;
+        padding-right: 0;
+        padding-bottom: 25px;
+    }
+
+    .profile-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .profile-page {
+        padding: 25px 4%;
+    }
+}
