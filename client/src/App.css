@@ -1973,3 +1973,97 @@ a {
     color: #94a3b8;
     font-size: 11px;
 }
+
+/* =========================================
+   TRIP HISTORY
+========================================= */
+
+.history-page {
+    min-height: 100vh;
+    background: #f8fafc;
+}
+
+.history-content {
+    width: 92%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 45px 0 60px;
+}
+
+.history-heading {
+    margin-bottom: 28px;
+}
+
+.history-heading h1 {
+    margin: 0 0 8px;
+    color: #111827;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.history-heading p {
+    margin: 0;
+    color: #64748b;
+    font-size: 14px;
+}
+
+.history-filters {
+    display: flex;
+    gap: 25px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.history-filter {
+    padding: 11px 2px;
+
+    background: transparent;
+    border: none;
+
+    color: #64748b;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.history-filter:hover {
+    color: #2563eb;
+}
+
+.active-filter {
+    color: #2563eb;
+    border-bottom: 2px solid #2563eb;
+}
+
+.empty-history {
+    padding: 65px 20px;
+
+    background: #ffffff;
+
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+
+    text-align: center;
+}
+
+.empty-history h3 {
+    margin: 0 0 8px;
+
+    color: #1e293b;
+
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.empty-history p {
+    max-width: 450px;
+
+    margin: 0 auto 22px;
+
+    color: #64748b;
+
+    font-size: 13px;
+    line-height: 1.6;
+}

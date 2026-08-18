@@ -7,6 +7,7 @@ import Profile from "./pages/Profile";
 import RoutesPage from "./pages/Routes";
 import Alerts from "./pages/Alerts";
 import Notifications from "./pages/Notifications";
+import TripHistory from "./pages/TripHistory";
 
 function App() {
     return (
@@ -22,6 +23,7 @@ function App() {
                 <Route path="/tickets" element={<Tickets />} />
                 <Route path="/alerts" element={<Alerts />} />
                 <Route path="/notifications" element={<Notifications />} />
+                <Route path="/history" element={<TripHistory />} />
             </Routes>
 
         </BrowserRouter>

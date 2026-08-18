@@ -233,6 +233,26 @@ function Dashboard() {
 
                             </div>
                         </Link>
+                        {/* trip history */}
+                            <Link
+                                    to="/history"
+                                    className="action-card action-link"
+                                >
+                                    <div className="action-content">
+
+                                        <h3>Trip History</h3>
+
+                                        <p>
+                                            View your previous journeys and
+                                            travel details.
+                                        </p>
+
+                                        <span className="action-button">
+                                            View History
+                                        </span>
+
+                                    </div>
+                                </Link>
                     </div>
                 </section>
             </main>
