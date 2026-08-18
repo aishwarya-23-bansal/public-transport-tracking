@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../App.css";
+import api from "../services/api";
 
 function Login() {
     const [email, setEmail] = useState("");
@@ -8,10 +9,34 @@ function Login() {
 
     const navigate = useNavigate();
 
-    const handleLogin = (e) => {
-        e.preventDefault();
+const handleLogin = async (e) => {
+    e.preventDefault();
+
+    try {
+        const response = await api.post("/auth/login", {
+            email,
+            password
+        });
+
+        console.log(response.data);
+
+        const token = response.data.token;
+
+        localStorage.setItem("token", token);
+
+        alert("Login successful!");
+
         navigate("/dashboard");
-    };
+
+    } catch (error) {
+        console.error(error);
+
+        alert(
+            error.response?.data?.message ||
+            "Login failed"
+        );
+    }
+};
 
     return (
         <div className="login-page">
