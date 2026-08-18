@@ -1742,3 +1742,95 @@ a {
         width: 100%;
     }
 }
+
+/* =========================================
+   TICKETS
+========================================= */
+
+.tickets-page {
+    min-height: 100vh;
+    background: #f8fafc;
+}
+
+.tickets-content {
+    width: 92%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 45px 0 60px;
+}
+
+.tickets-heading {
+    margin-bottom: 25px;
+}
+
+.tickets-heading h1 {
+    margin: 0 0 8px;
+    color: #111827;
+    font-size: 30px;
+}
+
+.tickets-heading p {
+    margin: 0;
+    color: #64748b;
+    font-size: 14px;
+}
+
+.ticket-tabs {
+    display: flex;
+    gap: 25px;
+
+    margin-bottom: 20px;
+
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.ticket-tabs button {
+    padding: 12px 3px;
+
+    background: none;
+    border: none;
+
+    color: #64748b;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.ticket-tabs .active-tab {
+    color: #2563eb;
+
+    border-bottom: 2px solid #2563eb;
+}
+
+.empty-tickets {
+    padding: 65px 20px;
+
+    background: white;
+
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+
+    text-align: center;
+}
+
+.empty-tickets h3 {
+    margin: 0 0 8px;
+
+    color: #1e293b;
+
+    font-size: 17px;
+}
+
+.empty-tickets p {
+    max-width: 430px;
+
+    margin: 0 auto 22px;
+
+    color: #64748b;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}

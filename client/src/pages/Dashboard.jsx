@@ -156,20 +156,25 @@ function Dashboard() {
                         </Link>
 
                         {/* TICKETS */}
-                        <div className="action-card">
+                        <Link
+                            to="/tickets"
+                            className="action-card action-link"
+                        >
                             <div className="action-content">
-                                <h3>
-                                    My Tickets
-                                </h3>
+
+                                <h3>My Tickets</h3>
+
                                 <p>
                                     View and manage your transport
                                     tickets and bookings.
                                 </p>
-                                <span className="coming-button">
-                                    Coming Soon
+
+                                <span className="action-button">
+                                    View Tickets
                                 </span>
+
                             </div>
-                        </div>
+                        </Link>
                         {/* PROFILE */}
                         <Link
                             to="/profile"
