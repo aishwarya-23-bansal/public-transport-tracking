@@ -16,6 +16,7 @@ function Profile() {
 
     const [message, setMessage] = useState("");
     const [loading, setLoading] = useState(true);
+    const [uploadingImage, setUploadingImage] = useState(false);
 
     useEffect(() => {
         fetchProfile();
@@ -38,7 +39,7 @@ function Profile() {
             });
 
         } catch (error) {
-            console.error(error);
+            console.error("Profile fetch error:", error);
         } finally {
             setLoading(false);
         }
@@ -82,6 +83,53 @@ function Profile() {
         }
     };
 
+    const handleImageChange = async (e) => {
+        const file = e.target.files[0];
+
+        if (!file) return;
+
+        setUploadingImage(true);
+
+        try {
+            const formData = new FormData();
+
+            formData.append("profileImage", file);
+
+            await api.put(
+                "/users/profile/image",
+                formData
+            );
+
+            setMessage("Profile photo updated successfully.");
+
+            /*
+             * Fetch the profile again after upload.
+             * This guarantees we use the exact image
+             * path returned by the backend.
+             */
+            await fetchProfile();
+
+            setTimeout(() => {
+                setMessage("");
+            }, 3000);
+
+        } catch (error) {
+            console.error("Image upload error:", error);
+
+            setMessage(
+                error.response?.data?.message ||
+                "Unable to upload profile photo."
+            );
+
+            setTimeout(() => {
+                setMessage("");
+            }, 3000);
+
+        } finally {
+            setUploadingImage(false);
+        }
+    };
+
     if (loading) {
         return (
             <div className="profile-loading">
@@ -104,10 +152,16 @@ function Profile() {
 
                 <div>
                     <h1>Profile</h1>
-                    <p>Manage your personal information and preferences.</p>
+
+                    <p>
+                        Manage your personal information and preferences.
+                    </p>
                 </div>
 
-                <Link to="/dashboard" className="back-button">
+                <Link
+                    to="/dashboard"
+                    className="back-button"
+                >
                     Back to Dashboard
                 </Link>
 
@@ -115,8 +169,6 @@ function Profile() {
 
 
             <div className="profile-container">
-
-                {/* Profile Summary */}
 
                 <div className="profile-summary">
 
@@ -130,35 +182,61 @@ function Profile() {
                         ) : (
                             <span>
                                 {profile.name
-                                    ? profile.name.charAt(0).toUpperCase()
+                                    ? profile.name
+                                        .charAt(0)
+                                        .toUpperCase()
                                     : "U"}
                             </span>
                         )}
 
                     </div>
 
-                    <h2>{profile.name}</h2>
+
+                    <h2>
+                        {profile.name}
+                    </h2>
 
                     <p className="profile-role">
                         {profile.role || "Commuter"}
                     </p>
 
-                    <button className="change-photo-button">
-                        Change Photo
-                    </button>
+
+                    <label className="change-photo-button">
+
+                        {uploadingImage
+                            ? "Uploading..."
+                            : "Change Photo"}
+
+                        <input
+                            type="file"
+                            accept="image/*"
+                            onChange={handleImageChange}
+                            hidden
+                            disabled={uploadingImage}
+                        />
+
+                    </label>
+
 
                     <div className="profile-divider"></div>
+
 
                     <div className="profile-info">
 
                         <div>
                             <span>Email</span>
-                            <strong>{profile.email}</strong>
+
+                            <strong>
+                                {profile.email}
+                            </strong>
                         </div>
 
                         <div>
                             <span>Phone</span>
-                            <strong>{profile.phone || "Not added"}</strong>
+
+                            <strong>
+                                {profile.phone || "Not added"}
+                            </strong>
                         </div>
 
                     </div>
@@ -166,20 +244,27 @@ function Profile() {
                 </div>
 
 
-                {/* Profile Form */}
-
                 <div className="profile-details">
 
                     <div className="details-header">
-                        <h2>Personal Information</h2>
-                        <p>Update your account information below.</p>
+
+                        <h2>
+                            Personal Information
+                        </h2>
+
+                        <p>
+                            Update your account information below.
+                        </p>
+
                     </div>
+
 
                     <form onSubmit={handleSubmit}>
 
                         <div className="profile-grid">
 
                             <div className="profile-field">
+
                                 <label>Full Name</label>
 
                                 <input
@@ -188,10 +273,12 @@ function Profile() {
                                     value={profile.name}
                                     onChange={handleChange}
                                 />
+
                             </div>
 
 
                             <div className="profile-field">
+
                                 <label>Email Address</label>
 
                                 <input
@@ -199,10 +286,12 @@ function Profile() {
                                     value={profile.email}
                                     disabled
                                 />
+
                             </div>
 
 
                             <div className="profile-field">
+
                                 <label>Phone Number</label>
 
                                 <input
@@ -211,10 +300,12 @@ function Profile() {
                                     value={profile.phone}
                                     onChange={handleChange}
                                 />
+
                             </div>
 
 
                             <div className="profile-field">
+
                                 <label>Account Role</label>
 
                                 <input
@@ -222,6 +313,7 @@ function Profile() {
                                     value={profile.role}
                                     disabled
                                 />
+
                             </div>
 
                         </div>
@@ -230,35 +322,48 @@ function Profile() {
                         <div className="emergency-box">
 
                             <div className="emergency-heading">
+
                                 <h3>Emergency Contact</h3>
+
                                 <p>
-                                    Keep a trusted contact available for emergencies.
+                                    Keep a trusted contact available
+                                    for emergencies.
                                 </p>
+
                             </div>
+
 
                             <div className="profile-grid">
 
                                 <div className="profile-field">
+
                                     <label>Contact Name</label>
 
                                     <input
                                         type="text"
                                         name="emergencyContactName"
-                                        value={profile.emergencyContactName}
+                                        value={
+                                            profile.emergencyContactName
+                                        }
                                         onChange={handleChange}
                                     />
+
                                 </div>
 
 
                                 <div className="profile-field">
+
                                     <label>Contact Phone</label>
 
                                     <input
                                         type="text"
                                         name="emergencyContactPhone"
-                                        value={profile.emergencyContactPhone}
+                                        value={
+                                            profile.emergencyContactPhone
+                                        }
                                         onChange={handleChange}
                                     />
+
                                 </div>
 
                             </div>
