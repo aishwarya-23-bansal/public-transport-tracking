@@ -213,6 +213,26 @@ function Dashboard() {
 
                             </div>
                         </Link>
+                        {/* notifications */}
+                        <Link
+                            to="/notifications"
+                            className="action-card action-link"
+                        >
+                            <div className="action-content">
+
+                                <h3>Notifications</h3>
+
+                                <p>
+                                    View account updates and important
+                                    journey notifications.
+                                </p>
+
+                                <span className="action-button">
+                                    View Notifications
+                                </span>
+
+                            </div>
+                        </Link>
                     </div>
                 </section>
             </main>
