@@ -10,6 +10,9 @@ import Notifications from "./pages/Notifications";
 import TripHistory from "./pages/TripHistory";
 import SavedRoutes from "./pages/SavedRoutes";
 import OperatorDashboard from "./pages/OperatorDashboard";
+import OperatorRoutes from "./pages/OperatorRoutes";
+import OperatorRouteDetails from "./pages/OperatorRouteDetails";
+import OperatorTrips from "./pages/OperatorTrips";
 
 function App() {
     return (
@@ -28,6 +31,9 @@ function App() {
                 <Route path="/history" element={<TripHistory />} />
                 <Route path="/saved-routes" element={<SavedRoutes />} />
                 <Route path="/operator" element={<OperatorDashboard />}/>
+                <Route path="/operator/routes" element={<OperatorRoutes />}/>
+                <Route path="/operator/routes/101" element={<OperatorRouteDetails />}/>
+                <Route path="/operator/trips" element={<OperatorTrips />}/>
             </Routes>
 
         </BrowserRouter>
