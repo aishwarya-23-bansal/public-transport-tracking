@@ -15,5 +15,4 @@ router.post("/login", loginUser);
 
 router.get("/profile", protect, getProfile);
 
-
 module.exports = router;

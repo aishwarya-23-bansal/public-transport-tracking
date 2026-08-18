@@ -5,7 +5,7 @@ const protect = async (req, res, next) => {
     console.log("AUTH MIDDLEWARE RUNNING");
     try {
         let token;
-
+i
         // Check Authorization header
         if (
             req.headers.authorization &&
