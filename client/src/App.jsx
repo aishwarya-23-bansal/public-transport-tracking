@@ -5,6 +5,7 @@ import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import Profile from "./pages/Profile";
 import RoutesPage from "./pages/Routes";
+import Alerts from "./pages/Alerts";
 
 function App() {
     return (
@@ -18,6 +19,7 @@ function App() {
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/routes" element={<RoutesPage />} />
                 <Route path="/tickets" element={<Tickets />} />
+                <Route path="/alerts" element={<Alerts />} />
             </Routes>
 
         </BrowserRouter>

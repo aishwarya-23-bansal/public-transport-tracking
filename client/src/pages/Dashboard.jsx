@@ -193,6 +193,26 @@ function Dashboard() {
                                 </span>
                             </div>
                         </Link>
+                        {/* alerts */}
+                        <Link
+                            to="/alerts"
+                            className="action-card action-link"
+                        >
+                            <div className="action-content">
+
+                                <h3>Travel Alerts</h3>
+
+                                <p>
+                                    Check service disruptions and important
+                                    travel updates.
+                                </p>
+
+                                <span className="action-button">
+                                    View Alerts
+                                </span>
+
+                            </div>
+                        </Link>
                     </div>
                 </section>
             </main>

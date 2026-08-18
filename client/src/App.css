@@ -1834,3 +1834,70 @@ a {
 
     line-height: 1.6;
 }
+
+/* =========================================
+   ALERTS
+========================================= */
+
+.alerts-page {
+    min-height: 100vh;
+    background: #f8fafc;
+}
+
+.alerts-content {
+    width: 92%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 45px 0 60px;
+}
+
+.alerts-heading {
+    margin-bottom: 28px;
+}
+
+.alerts-heading h1 {
+    margin: 0 0 8px;
+    color: #111827;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.alerts-heading p {
+    margin: 0;
+    color: #64748b;
+    font-size: 14px;
+}
+
+.alerts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.alert-card {
+    padding: 25px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+}
+
+.alert-type {
+    color: #2563eb;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+}
+
+.alert-card h3 {
+    margin: 9px 0 7px;
+    color: #1e293b;
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.alert-card p {
+    margin: 0;
+    color: #64748b;
+    font-size: 13px;
+    line-height: 1.6;
+}
