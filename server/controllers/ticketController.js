@@ -1,7 +1,8 @@
 const Ticket = require("../models/Ticket");
 const Route = require("../models/Route");
+const Notification = require("../models/Notification");
 
-// Create a ticket
+
 const createTicket = async (req, res) => {
     try {
         const {
@@ -43,6 +44,12 @@ const createTicket = async (req, res) => {
         const populatedTicket = await Ticket.findById(ticket._id)
             .populate("route")
             .populate("user", "name email");
+        await Notification.create({
+            user: req.user._id,
+            title: "Booking Confirmed",
+            message: `Your ticket ${ticket.ticketNumber} has been booked successfully.`,
+            type: "Booking"
+        });
 
         res.status(201).json({
             message: "Ticket created successfully",
