@@ -3389,3 +3389,135 @@ a {
     }
 
 }
+.route-detail-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 28px;
+}
+
+.route-detail-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 22px;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.route-detail-header span:first-child {
+    color: #2563eb;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.route-detail-header h2 {
+    margin: 6px 0 0;
+    color: #111827;
+    font-size: 22px;
+}
+
+.route-detail-status {
+    padding: 6px 10px;
+    background: #ecfdf5;
+    border-radius: 5px;
+    color: #047857;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.route-detail-info {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+    padding: 25px 0;
+}
+
+.route-detail-info div {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.route-detail-info span {
+    color: #94a3b8;
+    font-size: 11px;
+}
+
+.route-detail-info strong {
+    color: #334155;
+    font-size: 13px;
+}
+
+.route-stop-section {
+    padding-top: 20px;
+    border-top: 1px solid #f1f5f9;
+}
+
+.route-stop-section h3 {
+    margin: 0 0 15px;
+    color: #1e293b;
+    font-size: 16px;
+}
+
+.route-stop-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.route-stop-list div {
+    padding: 10px 12px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    color: #475569;
+    font-size: 13px;
+}
+
+.route-back-button {
+    display: inline-block;
+    margin-top: 25px;
+    padding: 10px 16px;
+    border: 1px solid #2563eb;
+    border-radius: 6px;
+    color: #2563eb;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.route-back-button:hover {
+    background: #2563eb;
+    color: #ffffff;
+}
+
+.route-details-loading,
+.route-details-error {
+    max-width: 900px;
+    margin: 60px auto;
+    padding: 50px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.route-details-error h2 {
+    color: #111827;
+}
+
+.route-details-error p {
+    color: #64748b;
+}
+
+@media (max-width: 700px) {
+    .route-detail-info {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 500px) {
+    .route-detail-info {
+        grid-template-columns: 1fr;
+    }
+}
