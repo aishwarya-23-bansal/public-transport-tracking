@@ -5,7 +5,9 @@ import "../App.css";
 
 function RouteDetails() {
     const { id } = useParams();
-
+    const [journeyDate, setJourneyDate] = useState("");
+    const [booking, setBooking] = useState(false);
+    const [bookingMessage, setBookingMessage] = useState("");
     const [route, setRoute] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
@@ -32,7 +34,42 @@ function RouteDetails() {
             setLoading(false);
         }
     };
+    const handleBooking = async () => {
+        if (!journeyDate) {
+            setBookingMessage("Please select a journey date.");
+            return;
+        }
 
+        try {
+            setBooking(true);
+            setBookingMessage("");
+
+            const ticketNumber =
+                "TKT" + Date.now();
+
+            await api.post("/tickets", {
+                ticketNumber,
+                route: route._id,
+                journeyDate,
+                fare: route.fare
+            });
+
+            setBookingMessage(
+                "Booking successful. Your ticket has been created."
+            );
+
+        } catch (error) {
+            console.error("Booking error:", error);
+
+            setBookingMessage(
+                error.response?.data?.message ||
+                "Unable to complete booking."
+            );
+
+        } finally {
+            setBooking(false);
+        }
+    };
     if (loading) {
         return (
             <div className="routes-page">
@@ -133,8 +170,6 @@ function RouteDetails() {
                         </span>
 
                     </div>
-
-
                     <div className="route-detail-info">
 
                         <div>
@@ -168,8 +203,6 @@ function RouteDetails() {
                         </div>
 
                     </div>
-
-
                     <div className="route-stop-section">
 
                         <h3>Route Stops</h3>
@@ -195,8 +228,60 @@ function RouteDetails() {
                         )}
 
                     </div>
+                    <div className="booking-section">
+
+                        <h3>Book This Route</h3>
+
+                        <p>
+                            Select your journey date to book this route.
+                        </p>
+
+                        <div className="booking-form">
+
+                            <div className="booking-field">
+
+                                <label htmlFor="journeyDate">
+                                    Journey Date
+                                </label>
+
+                                <input
+                                    id="journeyDate"
+                                    type="date"
+                                    value={journeyDate}
+                                    onChange={(e) =>
+                                        setJourneyDate(e.target.value)
+                                    }
+                                    min={
+                                        new Date()
+                                            .toISOString()
+                                            .split("T")[0]
+                                    }
+                                />
+
+                            </div>
 
 
+                            <button
+                                type="button"
+                                className="book-route-button"
+                                onClick={handleBooking}
+                                disabled={booking}
+                            >
+                                {booking
+                                    ? "Booking..."
+                                    : "Book This Route"}
+                            </button>
+
+                        </div>
+
+
+                        {bookingMessage && (
+                            <p className="booking-message">
+                                {bookingMessage}
+                            </p>
+                        )}
+
+                    </div>
                     <Link
                         to="/routes"
                         className="route-back-button"

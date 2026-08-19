@@ -5,6 +5,7 @@ const cors=require('cors');
 const authRoutes=require('./routes/authRoutes');
 const userRoutes=require('./routes/userRoutes');
 const routeRoutes = require("./routes/routeRoutes");
+const ticketRoutes = require("./routes/ticketRoutes");
 const app=express();
 
 app.use(cors());
@@ -20,6 +21,7 @@ app.get('/',(req,res)=>{
 app.use('/api/auth',authRoutes);
 app.use('/api/users',userRoutes);
 app.use("/api/routes", routeRoutes);
+app.use("/api/tickets", ticketRoutes);
 
 const port=process.env.PORT || 8000;
 app.listen(port,()=>{
