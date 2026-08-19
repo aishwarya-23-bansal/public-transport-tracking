@@ -13,6 +13,10 @@ import OperatorDashboard from "./pages/OperatorDashboard";
 import OperatorRoutes from "./pages/OperatorRoutes";
 import OperatorRouteDetails from "./pages/OperatorRouteDetails";
 import OperatorTrips from "./pages/OperatorTrips";
+import OperatorPassengers from "./pages/OperatorPassengers";
+import OperatorSchedule from "./pages/OperatorSchedule";
+import AdminDashboard from "./pages/AdminDashboard";
+import AdminUsers from "./pages/AdminUsers";
 
 function App() {
     return (
@@ -34,6 +38,10 @@ function App() {
                 <Route path="/operator/routes" element={<OperatorRoutes />}/>
                 <Route path="/operator/routes/101" element={<OperatorRouteDetails />}/>
                 <Route path="/operator/trips" element={<OperatorTrips />}/>
+                <Route path="/operator/passengers" element={<OperatorPassengers />}/>
+                <Route path="/operator/schedule" element={<OperatorSchedule />}/>
+                <Route path="/admin" element={<AdminDashboard />}/>
+                <Route path="/admin/users" element={<AdminUsers />}/>
             </Routes>
 
         </BrowserRouter>
