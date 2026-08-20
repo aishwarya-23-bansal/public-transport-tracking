@@ -1,7 +1,7 @@
 const Ticket = require("../models/Ticket");
 const Route = require("../models/Route");
 const Notification = require("../models/Notification");
-
+const Trip = require("../models/Trip");
 
 const createTicket = async (req, res) => {
     try {
@@ -81,6 +81,38 @@ const getMyTickets = async (req, res) => {
         });
     }
 };
+const getOperatorTickets = async (req, res) => {
+    try {
+        const trips = await Trip.find({
+            operator: req.user._id
+        }).select("route journeyDate");
+
+        const routeIds = trips.map((trip) => trip.route);
+
+        if (routeIds.length === 0) {
+            return res.status(200).json({
+                tickets: []
+            });
+        }
+
+        const tickets = await Ticket.find({
+            route: { $in: routeIds }
+        })
+            .populate("user", "name email phone")
+            .populate("route")
+            .sort({ journeyDate: 1, createdAt: -1 });
+
+        res.status(200).json({
+            tickets
+        });
+    } catch (error) {
+        console.error("Get operator tickets error:", error);
+
+        res.status(500).json({
+            message: "Server error"
+        });
+    }
+};
 const getTicketById = async (req, res) => {
     try {
         const ticket = await Ticket.findOne({
@@ -140,6 +172,7 @@ const cancelTicket = async (req, res) => {
 module.exports = {
     createTicket,
     getMyTickets,
+    getOperatorTickets,
     getTicketById,
     cancelTicket
 };

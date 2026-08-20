@@ -40,7 +40,7 @@ function App() {
                 <Route path="/saved-routes" element={<SavedRoutes />} />
                 <Route path="/operator" element={<OperatorDashboard />}/>
                 <Route path="/operator/routes" element={<OperatorRoutes />}/>
-                <Route path="/operator/routes/101" element={<OperatorRouteDetails />}/>
+                <Route path="/operator/routes/:id" element={<OperatorRouteDetails />}/>
                 <Route path="/operator/trips" element={<OperatorTrips />}/>
                 <Route path="/operator/passengers" element={<OperatorPassengers />}/>
                 <Route path="/operator/schedule" element={<OperatorSchedule />}/>
