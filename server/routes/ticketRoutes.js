@@ -1,22 +1,34 @@
 const express = require("express");
-
 const {
     createTicket,
     getMyTickets,
+    getOperatorTickets,
     getTicketById,
     cancelTicket
 } = require("../controllers/ticketController");
-
 const protect = require("../middleware/authMiddleware");
+const authorizeRoles = require("../middleware/roleMiddleware");
 
 const router = express.Router();
 
-router.post("/", protect, createTicket);
+router.post("/", protect, authorizeRoles("commuter"), createTicket);
 
-router.get("/", protect, getMyTickets);
+router.get("/my", protect, authorizeRoles("commuter"), getMyTickets);
 
-router.get("/:id", protect, getTicketById);
+router.get(
+    "/operator",
+    protect,
+    authorizeRoles("operator"),
+    getOperatorTickets
+);
 
-router.put("/:id/cancel", protect, cancelTicket);
+router.get("/:id", protect, authorizeRoles("commuter"), getTicketById);
+
+router.put(
+    "/:id/cancel",
+    protect,
+    authorizeRoles("commuter"),
+    cancelTicket
+);
 
 module.exports = router;

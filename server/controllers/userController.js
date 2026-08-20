@@ -157,10 +157,115 @@ const uploadProfileImage = async (req, res) => {
     }
 };
 
+const getAllUsers = async (req, res) => {
+    try {
+        const users = await User.find()
+            .select("-password")
+            .sort({ createdAt: -1 });
 
+        res.status(200).json({
+            users
+        });
+
+    } catch (error) {
+        console.error("Get all users error:", error);
+
+        res.status(500).json({
+            message: "Server error"
+        });
+    }
+};
+const createAdminUser = async (req, res) => {
+    try {
+        const {
+            name,
+            email,
+            password,
+            phone,
+            role
+        } = req.body;
+
+        if (!name || !email || !password || !phone || !role) {
+            return res.status(400).json({
+                message: "Please provide all required fields"
+            });
+        }
+
+        if (!["commuter", "operator", "admin"].includes(role)) {
+            return res.status(400).json({
+                message: "Invalid role"
+            });
+        }
+
+        const existingUser = await User.findOne({ email });
+
+        if (existingUser) {
+            return res.status(400).json({
+                message: "User already exists"
+            });
+        }
+
+        const hashedPassword = await bcrypt.hash(
+            password,
+            10
+        );
+
+        const user = await User.create({
+            name,
+            email,
+            password: hashedPassword,
+            phone,
+            role
+        });
+
+        res.status(201).json({
+            message: "User created successfully",
+            user: {
+                id: user._id,
+                name: user.name,
+                email: user.email,
+                phone: user.phone,
+                role: user.role
+            }
+        });
+    } catch (error) {
+        console.error("Create admin user error:", error);
+
+        res.status(500).json({
+            message: "Server error"
+        });
+    }
+};
+
+const getUserByIdAdmin = async (req, res) => {
+    try {
+        const user = await User.findById(
+            req.params.id
+        ).select("-password");
+
+        if (!user) {
+            return res.status(404).json({
+                message: "User not found"
+            });
+        }
+
+        res.status(200).json({
+            user
+        });
+    } catch (error) {
+        console.error("Get admin user error:", error);
+
+        res.status(500).json({
+            message: "Server error"
+        });
+    }
+};
 module.exports = {
     getProfile,
     updateProfile,
     changePassword,
-    uploadProfileImage
+    uploadProfileImage,
+    getAllUsers,
+    createAdminUser,
+    getUserByIdAdmin
 };
