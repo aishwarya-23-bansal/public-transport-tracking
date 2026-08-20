@@ -169,10 +169,30 @@ const cancelTicket = async (req, res) => {
         });
     }
 };
+const getAllTickets = async (req, res) => {
+    try {
+        const tickets = await Ticket.find()
+            .populate("user", "name email phone")
+            .populate("route")
+            .sort({ createdAt: -1 });
+
+        res.status(200).json({
+            tickets
+        });
+
+    } catch (error) {
+        console.error("Get all tickets error:", error);
+
+        res.status(500).json({
+            message: "Server error"
+        });
+    }
+};
 module.exports = {
     createTicket,
     getMyTickets,
     getOperatorTickets,
     getTicketById,
+    getAllTickets,
     cancelTicket
 };

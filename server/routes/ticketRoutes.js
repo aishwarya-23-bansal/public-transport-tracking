@@ -4,7 +4,8 @@ const {
     getMyTickets,
     getOperatorTickets,
     getTicketById,
-    cancelTicket
+    cancelTicket,
+    getAllTickets
 } = require("../controllers/ticketController");
 const protect = require("../middleware/authMiddleware");
 const authorizeRoles = require("../middleware/roleMiddleware");
@@ -20,6 +21,12 @@ router.get(
     protect,
     authorizeRoles("operator"),
     getOperatorTickets
+);
+router.get(
+    "/admin",
+    protect,
+    authorizeRoles("admin"),
+    getAllTickets
 );
 
 router.get("/:id", protect, authorizeRoles("commuter"), getTicketById);
