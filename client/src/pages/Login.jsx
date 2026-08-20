@@ -9,28 +9,41 @@ function Login() {
 
     const navigate = useNavigate();
 
-const handleLogin = async (e) => {
-    e.preventDefault();
+    const handleLogin = async (e) => {
+        e.preventDefault();
 
-    try {
-        const response = await api.post("/auth/login", {
-            email,
-            password
-        });
-        console.log(response.data);
-        const token = response.data.token;
-        localStorage.setItem("token", token);
-        alert("Login successful!");
-        navigate("/dashboard");
+        try {
+            const response = await api.post("/auth/login", {
+                email,
+                password
+            });
+            console.log(response.data);
+            const token = response.data.token;
+            const user = response.data.user;
 
-    } catch (error) {
-        console.error(error);
-        alert(
-            error.response?.data?.message ||
-            "Login failed"
-        );
-    }
-};
+            localStorage.setItem("token", token);
+            localStorage.setItem("user", JSON.stringify(user));
+
+            alert("Login successful!");
+
+            if (user.role === "commuter") {
+                navigate("/dashboard");
+            } else if (user.role === "operator") {
+                navigate("/operator");
+            } else if (user.role === "admin") {
+                navigate("/admin");
+            } else {
+                alert("Unknown user role");
+            }
+
+        } catch (error) {
+            console.error(error);
+            alert(
+                error.response?.data?.message ||
+                "Login failed"
+            );
+        }
+    };
 
     return (
         <div className="login-page">

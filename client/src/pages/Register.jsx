@@ -7,6 +7,7 @@ function Register() {
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
     const [password, setPassword] = useState("");
+    const [role, setRole] = useState("commuter");
 
     const navigate = useNavigate();
 
@@ -18,13 +19,12 @@ function Register() {
                 name,
                 email,
                 phone,
-                password
+                password,
+                role
             });
 
             alert(response.data.message || "Registration successful!");
-
             navigate("/login");
-
         } catch (error) {
             console.error(error);
 
@@ -37,9 +37,7 @@ function Register() {
 
     return (
         <div className="login-page">
-
             <div className="login-left">
-
                 <div className="brand">
                     <div className="logo">🚍</div>
                     <h1>Transit<span>Go</span></h1>
@@ -54,21 +52,17 @@ function Register() {
                     </p>
 
                     <div className="features">
-                        <div>📍 Find routes easily</div>
-                        <div>🎫 Book your tickets</div>
-                        <div>⏱️ Track your journey</div>
+                        <div> Find routes easily</div>
+                        <div> Book your tickets</div>
+                        <div> Track your journey</div>
                     </div>
                 </div>
-
             </div>
 
-
             <div className="login-right">
-
                 <div className="login-card">
-
                     <div className="mobile-logo">
-                        🚍 TransitGo
+                         TransitGo
                     </div>
 
                     <h2>Create account</h2>
@@ -78,7 +72,6 @@ function Register() {
                     </p>
 
                     <form onSubmit={handleRegister}>
-
                         <div className="input-group">
                             <label>Name</label>
 
@@ -90,7 +83,6 @@ function Register() {
                                 required
                             />
                         </div>
-
 
                         <div className="input-group">
                             <label>Email</label>
@@ -104,7 +96,6 @@ function Register() {
                             />
                         </div>
 
-
                         <div className="input-group">
                             <label>Phone</label>
 
@@ -116,7 +107,6 @@ function Register() {
                                 required
                             />
                         </div>
-
 
                         <div className="input-group">
                             <label>Password</label>
@@ -130,23 +120,31 @@ function Register() {
                             />
                         </div>
 
+                        <div className="input-group">
+                            <label>Account Role</label>
+
+                            <select
+                                value={role}
+                                onChange={(e) => setRole(e.target.value)}
+                                required
+                            >
+                                <option value="commuter">Commuter</option>
+                                <option value="operator">Operator</option>
+                                <option value="admin">Admin</option>
+                            </select>
+                        </div>
 
                         <button className="login-button" type="submit">
                             Create Account →
                         </button>
-
                     </form>
-
 
                     <p className="register-text">
                         Already have an account?{" "}
                         <Link to="/login">Login</Link>
                     </p>
-
                 </div>
-
             </div>
-
         </div>
     );
 }
