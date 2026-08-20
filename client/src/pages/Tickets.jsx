@@ -19,7 +19,7 @@ function Tickets() {
             setLoading(true);
             setError("");
 
-            const response = await api.get("/tickets");
+            const response = await api.get("/tickets/my");
 
             setTickets(response.data.tickets || []);
 

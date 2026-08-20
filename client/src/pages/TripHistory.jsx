@@ -18,7 +18,7 @@ function TripHistory() {
             setLoading(true);
             setError("");
 
-            const response = await api.get("/tickets");
+            const response = await api.get("/tickets/my");
             setTickets(response.data.tickets || []);
         } catch (error) {
             console.error("Fetch trip history error:", error);
