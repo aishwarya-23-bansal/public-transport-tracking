@@ -8,6 +8,17 @@ function AdminUsers() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
 
+    const [showAddUser, setShowAddUser] = useState(false);
+    const [selectedUser, setSelectedUser] = useState(null);
+
+    const [form, setForm] = useState({
+        name: "",
+        email: "",
+        password: "",
+        phone: "",
+        role: "commuter"
+    });
+
     useEffect(() => {
         fetchUsers();
     }, []);
@@ -28,6 +39,60 @@ function AdminUsers() {
             );
         } finally {
             setLoading(false);
+        }
+    };
+
+    const handleChange = (e) => {
+        setForm({
+            ...form,
+            [e.target.name]: e.target.value
+        });
+    };
+
+    const handleAddUser = async (e) => {
+        e.preventDefault();
+
+        try {
+            const response = await api.post("/users", form);
+
+            alert(
+                response.data.message ||
+                "User created successfully"
+            );
+
+            setForm({
+                name: "",
+                email: "",
+                password: "",
+                phone: "",
+                role: "commuter"
+            });
+
+            setShowAddUser(false);
+
+            fetchUsers();
+        } catch (error) {
+            console.error("Create user error:", error);
+
+            alert(
+                error.response?.data?.message ||
+                "Unable to create user."
+            );
+        }
+    };
+
+    const handleViewUser = async (id) => {
+        try {
+            const response = await api.get(`/users/${id}`);
+
+            setSelectedUser(response.data.user);
+        } catch (error) {
+            console.error("View user error:", error);
+
+            alert(
+                error.response?.data?.message ||
+                "Unable to load user."
+            );
         }
     };
 
@@ -74,8 +139,9 @@ function AdminUsers() {
                     </div>
 
                     <button
+                        type="button"
                         className="admin-primary-button"
-                        disabled
+                        onClick={() => setShowAddUser(true)}
                     >
                         Add User
                     </button>
@@ -98,6 +164,7 @@ function AdminUsers() {
                         <p>{error}</p>
 
                         <button
+                            type="button"
                             className="admin-primary-button"
                             onClick={fetchUsers}
                         >
@@ -147,8 +214,13 @@ function AdminUsers() {
 
                                             <td>
                                                 <button
+                                                    type="button"
                                                     className="admin-action-button"
-                                                    disabled
+                                                    onClick={() =>
+                                                        handleViewUser(
+                                                            user._id
+                                                        )
+                                                    }
                                                 >
                                                     View
                                                 </button>
@@ -161,6 +233,200 @@ function AdminUsers() {
                     </div>
                 )}
             </main>
+
+            {showAddUser && (
+                <div
+                    style={{
+                        position: "fixed",
+                        inset: 0,
+                        background: "rgba(0, 0, 0, 0.6)",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        zIndex: 9999,
+                        padding: "20px"
+                    }}
+                >
+                    <div
+                        style={{
+                            background: "white",
+                            padding: "30px",
+                            borderRadius: "12px",
+                            width: "400px",
+                            maxWidth: "100%",
+                            color: "#111"
+                        }}
+                    >
+                        <h2>Add User</h2>
+
+                        <form onSubmit={handleAddUser}>
+                            <div className="input-group">
+                                <label>Name</label>
+
+                                <input
+                                    type="text"
+                                    name="name"
+                                    placeholder="Enter name"
+                                    value={form.name}
+                                    onChange={handleChange}
+                                    required
+                                />
+                            </div>
+
+                            <div className="input-group">
+                                <label>Email</label>
+
+                                <input
+                                    type="email"
+                                    name="email"
+                                    placeholder="Enter email"
+                                    value={form.email}
+                                    onChange={handleChange}
+                                    required
+                                />
+                            </div>
+
+                            <div className="input-group">
+                                <label>Phone</label>
+
+                                <input
+                                    type="tel"
+                                    name="phone"
+                                    placeholder="Enter phone"
+                                    value={form.phone}
+                                    onChange={handleChange}
+                                    required
+                                />
+                            </div>
+
+                            <div className="input-group">
+                                <label>Password</label>
+
+                                <input
+                                    type="password"
+                                    name="password"
+                                    placeholder="Create password"
+                                    value={form.password}
+                                    onChange={handleChange}
+                                    required
+                                />
+                            </div>
+
+                            <div className="input-group">
+                                <label>Role</label>
+
+                                <select
+                                    name="role"
+                                    value={form.role}
+                                    onChange={handleChange}
+                                >
+                                    <option value="commuter">
+                                        Commuter
+                                    </option>
+
+                                    <option value="operator">
+                                        Operator
+                                    </option>
+
+                                    <option value="admin">
+                                        Admin
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div
+                                style={{
+                                    display: "flex",
+                                    gap: "10px",
+                                    marginTop: "20px"
+                                }}
+                            >
+                                <button
+                                    type="submit"
+                                    className="admin-primary-button"
+                                >
+                                    Create User
+                                </button>
+
+                                <button
+                                    type="button"
+                                    className="admin-action-button"
+                                    onClick={() =>
+                                        setShowAddUser(false)
+                                    }
+                                >
+                                    Cancel
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            )}
+
+            {selectedUser && (
+                <div
+                    style={{
+                        position: "fixed",
+                        inset: 0,
+                        background: "rgba(0, 0, 0, 0.6)",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        zIndex: 9999,
+                        padding: "20px"
+                    }}
+                >
+                    <div
+                        style={{
+                            background: "white",
+                            padding: "30px",
+                            borderRadius: "12px",
+                            width: "400px",
+                            maxWidth: "100%",
+                            color: "#111"
+                        }}
+                    >
+                        <h2>User Details</h2>
+
+                        <p>
+                            <strong>Name:</strong>{" "}
+                            {selectedUser.name}
+                        </p>
+
+                        <p>
+                            <strong>Email:</strong>{" "}
+                            {selectedUser.email}
+                        </p>
+
+                        <p>
+                            <strong>Phone:</strong>{" "}
+                            {selectedUser.phone}
+                        </p>
+
+                        <p>
+                            <strong>Role:</strong>{" "}
+                            {selectedUser.role}
+                        </p>
+
+                        <p>
+                            <strong>Created:</strong>{" "}
+                            {new Date(
+                                selectedUser.createdAt
+                            ).toLocaleDateString()}
+                        </p>
+
+                        <button
+                            type="button"
+                            className="admin-primary-button"
+                            onClick={() =>
+                                setSelectedUser(null)
+                            }
+                        >
+                            Close
+                        </button>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }
