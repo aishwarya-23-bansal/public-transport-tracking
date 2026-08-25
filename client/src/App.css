@@ -4630,3 +4630,469 @@ a {
         font-size: 25px;
     }
 }
+/* =========================================
+   CLEAN ROUTES PAGE
+========================================= */
+
+.routes-page {
+    min-height: 100vh;
+    background: #f8fafc;
+    color: #111827;
+}
+
+
+/* NAVBAR */
+
+.routes-page .navbar {
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+
+/* MAIN CONTENT */
+
+.routes-content {
+    width: 90%;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 55px 0 80px;
+}
+
+
+/* PAGE HEADING */
+
+.routes-heading {
+    margin-bottom: 30px;
+}
+
+.routes-eyebrow,
+.results-eyebrow {
+    display: block;
+    margin-bottom: 8px;
+
+    color: #2563eb;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.1px;
+}
+
+.routes-heading h1 {
+    margin: 0 0 10px;
+
+    color: #111827;
+    font-size: 38px;
+    font-weight: 650;
+    letter-spacing: -1px;
+}
+
+.routes-heading p {
+    max-width: 650px;
+    margin: 0;
+
+    color: #64748b;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+
+/* =========================================
+   SEARCH
+========================================= */
+
+.route-search {
+    padding: 22px 24px;
+
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+
+    box-shadow: 0 4px 15px rgba(15, 23, 42, 0.04);
+
+    margin-bottom: 45px;
+}
+
+.route-search-fields {
+    display: grid;
+
+    grid-template-columns:
+        1fr
+        40px
+        1fr
+        150px;
+
+    align-items: end;
+    gap: 12px;
+}
+
+.route-input label {
+    display: block;
+    margin-bottom: 7px;
+
+    color: #475569;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.7px;
+}
+
+.route-input input {
+    width: 100%;
+    height: 44px;
+
+    padding: 0 12px;
+
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+
+    background: #ffffff;
+
+    color: #111827;
+    font-size: 13px;
+
+    outline: none;
+    box-sizing: border-box;
+}
+
+.route-input input::placeholder {
+    color: #94a3b8;
+}
+
+.route-input input:focus {
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.08);
+}
+
+.route-swap {
+    height: 44px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #2563eb;
+    font-size: 19px;
+}
+
+.search-route-button {
+    height: 44px;
+
+    border: none;
+    border-radius: 6px;
+
+    background: #2563eb;
+    color: #ffffff;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: background 0.2s ease;
+}
+
+.search-route-button:hover {
+    background: #1d4ed8;
+}
+
+.search-route-button:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+
+/* =========================================
+   EMPTY / MESSAGE STATES
+========================================= */
+
+.routes-message {
+    padding: 55px 20px;
+
+    text-align: center;
+
+    border-top: 1px solid #e2e8f0;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.routes-message-icon {
+    margin-bottom: 14px;
+    font-size: 28px;
+}
+
+.routes-message h3 {
+    margin: 0 0 8px;
+
+    color: #1f2937;
+    font-size: 18px;
+    font-weight: 650;
+}
+
+.routes-message p {
+    max-width: 500px;
+    margin: 0 auto;
+
+    color: #64748b;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.routes-error {
+    border-color: #fecaca;
+}
+
+.routes-error h3 {
+    color: #b91c1c;
+}
+
+.routes-loader {
+    margin-bottom: 12px;
+
+    color: #2563eb;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+/* =========================================
+   RESULTS
+========================================= */
+
+.route-results {
+    margin-top: 10px;
+}
+
+.results-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    margin-bottom: 20px;
+}
+
+.results-header h2 {
+    margin: 0;
+
+    color: #111827;
+    font-size: 23px;
+    font-weight: 650;
+}
+
+.results-count {
+    color: #64748b;
+    font-size: 12px;
+}
+
+
+/* =========================================
+   TABLE
+========================================= */
+
+.routes-table-wrapper {
+    width: 100%;
+
+    overflow-x: auto;
+
+    background: #ffffff;
+
+    border-top: 1px solid #e2e8f0;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.routes-table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    min-width: 900px;
+}
+
+.routes-table thead {
+    background: #f8fafc;
+}
+
+.routes-table th {
+    padding: 14px 16px;
+
+    color: #64748b;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    text-align: left;
+
+    letter-spacing: 0.6px;
+
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.routes-table td {
+    padding: 19px 16px;
+
+    color: #475569;
+
+    font-size: 13px;
+
+    border-bottom: 1px solid #edf2f7;
+
+    white-space: nowrap;
+}
+
+.routes-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.routes-table tbody tr {
+    transition: background 0.15s ease;
+}
+
+.routes-table tbody tr:hover {
+    background: #f8fafc;
+}
+
+
+/* ROUTE NUMBER */
+
+.route-number-text {
+    color: #2563eb;
+
+    font-size: 14px;
+    font-weight: 700;
+}
+
+
+/* JOURNEY */
+
+.journey-cell {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.journey-cell strong {
+    color: #1f2937;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.journey-cell span {
+    color: #94a3b8;
+}
+
+
+/* STATUS */
+
+.route-status {
+    display: inline-flex;
+    align-items: center;
+
+    padding: 5px 9px;
+
+    border-radius: 20px;
+
+    background: #f1f5f9;
+    color: #64748b;
+
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.route-status.active {
+    background: #ecfdf5;
+    color: #047857;
+}
+
+
+/* VIEW BUTTON */
+
+.route-view-button {
+    padding: 7px 12px;
+
+    background: transparent;
+
+    border: 1px solid #dbe3ed;
+    border-radius: 5px;
+
+    color: #2563eb;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.route-view-button:hover {
+    background: #eff6ff;
+    border-color: #bfdbfe;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 850px) {
+
+    .routes-content {
+        width: 92%;
+        padding-top: 40px;
+    }
+
+    .route-search-fields {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .route-swap {
+        display: none;
+    }
+
+    .search-route-button {
+        width: 100%;
+    }
+
+    .routes-heading h1 {
+        font-size: 32px;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .routes-content {
+        width: 90%;
+        padding: 35px 0 60px;
+    }
+
+    .routes-heading h1 {
+        font-size: 29px;
+    }
+
+    .route-search {
+        padding: 18px;
+    }
+
+    .route-search-fields {
+        grid-template-columns: 1fr;
+    }
+
+    .route-swap {
+        display: none;
+    }
+
+    .results-header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .results-header h2 {
+        font-size: 20px;
+    }
+
+    .routes-table {
+        min-width: 850px;
+    }
+}

@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import AdminRoute from "./pages/AdminRoute";
 import Home from "./pages/Home";
 import Tickets from "./pages/Tickets";
 import Login from "./pages/Login";
@@ -16,12 +17,12 @@ import OperatorRouteDetails from "./pages/OperatorRouteDetails";
 import OperatorTrips from "./pages/OperatorTrips";
 import OperatorPassengers from "./pages/OperatorPassengers";
 import OperatorSchedule from "./pages/OperatorSchedule";
+import RouteDetails from "./pages/RouteDetails";
 import AdminDashboard from "./pages/AdminDashboard";
 import AdminUsers from "./pages/AdminUsers";
 import AdminRoutes from "./pages/AdminRoutes";
 import AdminOperators from "./pages/AdminOperators";
 import AdminBookings from "./pages/AdminBookings";
-import RouteDetails from "./pages/RouteDetails";
 
 function App() {
     return (
@@ -45,11 +46,13 @@ function App() {
                 <Route path="/operator/trips" element={<OperatorTrips />}/>
                 <Route path="/operator/passengers" element={<OperatorPassengers />}/>
                 <Route path="/operator/schedule" element={<OperatorSchedule />}/>
-                <Route path="/admin" element={<AdminDashboard />}/>
-                <Route path="/admin/users" element={<AdminUsers />}/>
-                <Route path="/admin/routes" element={<AdminRoutes />}/>
-                <Route path="/admin/operators" element={<AdminOperators />}/>
-                <Route path="/admin/bookings" element={<AdminBookings />}/>
+                <Route element={<AdminRoute />}>
+                    <Route path="/admin" element={<AdminDashboard />} />
+                    <Route path="/admin/users" element={<AdminUsers />} />
+                    <Route path="/admin/routes" element={<AdminRoutes />} />
+                    <Route path="/admin/operators" element={<AdminOperators />} />
+                    <Route path="/admin/bookings" element={<AdminBookings />} />
+                </Route>
                 <Route path="/routes/:id" element={<RouteDetails />} />
             </Routes>
 
