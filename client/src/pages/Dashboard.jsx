@@ -1,172 +1,220 @@
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../App.css";
 
 function Dashboard() {
     const navigate = useNavigate();
-    const user = JSON.parse(localStorage.getItem("user") || "null");
+    const [from, setFrom] = useState("");
+    const [to, setTo] = useState("");
 
-    const logout = () => {
-        localStorage.removeItem("token");
-        localStorage.removeItem("user");
-        navigate("/login");
+    const handleSearch = (e) => {
+        e.preventDefault();
+
+        if (!from.trim() || !to.trim()) {
+            alert("Please enter both starting point and destination.");
+            return;
+        }
+
+        navigate(
+            `/routes?from=${encodeURIComponent(from.trim())}&to=${encodeURIComponent(to.trim())}`
+        );
     };
 
     return (
         <div className="commuter-home">
+
             <nav className="main-nav">
-                <Link to="/dashboard" className="brand">Transit<span>Go</span></Link>
+                <Link to="/dashboard" className="brand">
+                    Transit<span>Go</span>
+                </Link>
 
                 <div className="nav-links">
-                    <Link to="/dashboard">Home</Link>
+                    <Link to="/dashboard" className="active">Home</Link>
                     <Link to="/routes">Routes</Link>
                     <Link to="/tickets">Tickets</Link>
                     <Link to="/history">History</Link>
                     <Link to="/alerts">Updates</Link>
                 </div>
 
-                <div className="nav-user">
-                    <Link to="/profile">{user?.name || "Profile"}</Link>
-                    <button onClick={logout}>Logout</button>
-                </div>
+                <Link to="/profile" className="profile-nav">
+                    Profile
+                </Link>
             </nav>
 
             <main>
+
                 <section className="travel-hero">
                     <div className="hero-content">
-                        <span className="hero-label">TRANSITGO FOR COMMUTERS</span>
-                        <h1>Move smarter.<br />Travel easier.</h1>
-                        <p>Find routes, track your journey and manage your public transport trips in one place.</p>
+                        <span className="hero-label">SMART PUBLIC TRANSPORT</span>
+
+                        <h1>
+                            Where are you
+                            <br />
+                            going today?
+                        </h1>
+
+                        <p>
+                            Find routes, check schedules and manage your
+                            journeys from one place.
+                        </p>
                     </div>
 
                     <div className="route-search">
-                        <div className="search-title">
-                            <span>PLAN YOUR JOURNEY</span>
-                            <h2>Where do you want to go?</h2>
+                        <div className="search-heading">
+                            <strong>Plan your journey</strong>
+                            <span>Find the best available route</span>
                         </div>
 
-                        <div className="search-fields">
+                        <form onSubmit={handleSearch}>
+
                             <div className="search-field">
                                 <label>FROM</label>
-                                <input type="text" placeholder="Starting point" />
+
+                                <input
+                                    type="text"
+                                    placeholder="Starting point"
+                                    value={from}
+                                    onChange={(e) => setFrom(e.target.value)}
+                                />
                             </div>
 
-                            <div className="search-direction">→</div>
+                            <div className="search-arrow">
+                                →
+                            </div>
 
                             <div className="search-field">
                                 <label>TO</label>
-                                <input type="text" placeholder="Destination" />
+
+                                <input
+                                    type="text"
+                                    placeholder="Destination"
+                                    value={to}
+                                    onChange={(e) => setTo(e.target.value)}
+                                />
                             </div>
 
-                            <Link to="/routes" className="find-route-btn">Find Routes</Link>
-                        </div>
+                            <button type="submit">
+                                Find Routes
+                            </button>
+
+                        </form>
                     </div>
                 </section>
 
-                <section className="services-section">
-                    <div className="section-title">
-                        <span>TRAVEL SERVICES</span>
-                        <h2>What do you need?</h2>
+                <section className="quick-section">
+
+                    <div className="section-heading">
+                        <span>QUICK ACCESS</span>
+                        <h2>Manage your journey</h2>
                     </div>
 
-                    <div className="service-links">
-                        <Link to="/routes">
-                            <span>⌕</span>
-                            <div>
-                                <strong>Find a Route</strong>
-                                <small>Search available transport</small>
-                            </div>
-                            <b>→</b>
-                        </Link>
+                    <div className="quick-links">
 
-                        <Link to="/tickets">
-                            <span>▣</span>
+                        <Link to="/tickets" className="quick-link">
                             <div>
                                 <strong>My Tickets</strong>
-                                <small>View your active tickets</small>
+                                <p>View your active bookings</p>
                             </div>
-                            <b>→</b>
+
+                            <span>→</span>
                         </Link>
 
-                        <Link to="/saved-routes">
-                            <span>☆</span>
+                        <Link to="/history" className="quick-link">
+                            <div>
+                                <strong>Trip History</strong>
+                                <p>View your previous journeys</p>
+                            </div>
+
+                            <span>→</span>
+                        </Link>
+
+                        <Link to="/saved-routes" className="quick-link">
                             <div>
                                 <strong>Saved Routes</strong>
-                                <small>Access your favourite routes</small>
+                                <p>Access your frequently used routes</p>
                             </div>
-                            <b>→</b>
+
+                            <span>→</span>
                         </Link>
 
-                        <Link to="/alerts">
-                            <span>!</span>
+                        <Link to="/alerts" className="quick-link">
                             <div>
-                                <strong>Service Updates</strong>
-                                <small>Check transport alerts</small>
+                                <strong>Travel Updates</strong>
+                                <p>Check service alerts and updates</p>
                             </div>
-                            <b>→</b>
+
+                            <span>→</span>
                         </Link>
+
                     </div>
+
                 </section>
 
-                <section className="travel-section">
-                    <div className="section-title">
-                        <span>YOUR TRAVEL</span>
-                        <h2>Travel overview</h2>
-                    </div>
+                <section className="info-section">
 
-                    <div className="travel-stats">
-                        <div>
-                            <span>ACTIVE TICKETS</span>
-                            <strong>0</strong>
-                            <small>No active tickets</small>
-                        </div>
+                    <div className="info-block">
+                        <span>01</span>
 
                         <div>
-                            <span>UPCOMING TRIPS</span>
-                            <strong>0</strong>
-                            <small>No upcoming trips</small>
-                        </div>
+                            <h3>Search</h3>
 
-                        <div>
-                            <span>SAVED ROUTES</span>
-                            <strong>0</strong>
-                            <small>No saved routes</small>
+                            <p>
+                                Enter your starting point and destination
+                                to find available public transport.
+                            </p>
                         </div>
                     </div>
+
+                    <div className="info-block">
+                        <span>02</span>
+
+                        <div>
+                            <h3>Choose</h3>
+
+                            <p>
+                                Compare routes, fares and journey details
+                                before you travel.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div className="info-block">
+                        <span>03</span>
+
+                        <div>
+                            <h3>Travel</h3>
+
+                            <p>
+                                Book your ticket and stay updated throughout
+                                your journey.
+                            </p>
+                        </div>
+                    </div>
+
                 </section>
 
-                <section className="updates-section">
-                    <div className="section-title">
-                        <span>TRAVEL INFORMATION</span>
-                        <h2>Service updates</h2>
-                    </div>
-
-                    <div className="empty-update">
-                        <div>
-                            <strong>No current service alerts</strong>
-                            <p>There are no major disruptions affecting your routes.</p>
-                        </div>
-                        <Link to="/alerts">View all updates →</Link>
-                    </div>
-                </section>
-
-                <section className="history-section">
-                    <div>
-                        <span>YOUR JOURNEYS</span>
-                        <h2>Keep track of your travel</h2>
-                        <p>View previous trips, tickets and your saved routes.</p>
-                    </div>
-
-                    <div className="history-actions">
-                        <Link to="/history">Trip History →</Link>
-                        <Link to="/profile">My Profile →</Link>
-                    </div>
-                </section>
             </main>
 
             <footer className="commuter-footer">
-                <div className="brand">Transit<span>Go</span></div>
-                <p>Making public transport simpler, smarter and more accessible.</p>
+
+                <div>
+                    <Link to="/dashboard" className="brand">
+                        Transit<span>Go</span>
+                    </Link>
+
+                    <p>
+                        Making public transport simpler and smarter.
+                    </p>
+                </div>
+
+                <div className="footer-links">
+                    <Link to="/routes">Routes</Link>
+                    <Link to="/tickets">Tickets</Link>
+                    <Link to="/profile">Profile</Link>
+                </div>
+
             </footer>
+
         </div>
     );
 }

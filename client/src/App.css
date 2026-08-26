@@ -5765,3 +5765,645 @@ a {
         gap: 20px;
     }
 }
+.routes-main {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 65px 30px 80px;
+}
+
+.routes-intro {
+    margin-bottom: 32px;
+}
+
+.routes-intro > span,
+.results-title > div > span {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.4px;
+    color: #e85d04;
+}
+
+.routes-intro h1 {
+    font-size: 42px;
+    margin: 9px 0;
+    letter-spacing: -1px;
+}
+
+.routes-intro p {
+    margin: 0;
+    color: #6b6b6b;
+    font-size: 15px;
+}
+
+.route-search-new {
+    background: #fff;
+    border: 1px solid #e4e4e4;
+    border-radius: 10px;
+    padding: 24px;
+    margin-bottom: 45px;
+}
+
+.route-search-new form {
+    display: flex;
+    align-items: end;
+    gap: 14px;
+}
+
+.route-search-input {
+    flex: 1;
+}
+
+.route-search-input label {
+    display: block;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: #777;
+    margin-bottom: 7px;
+}
+
+.route-search-input input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 14px;
+    border: 1px solid #ddd;
+    border-radius: 7px;
+    font-size: 14px;
+    outline: none;
+}
+
+.route-search-input input:focus {
+    border-color: #e85d04;
+}
+
+.route-search-arrow {
+    padding-bottom: 14px;
+    color: #999;
+}
+
+.route-search-new button {
+    border: 0;
+    background: #e85d04;
+    color: #fff;
+    padding: 14px 22px;
+    border-radius: 7px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.route-search-new button:disabled {
+    opacity: .6;
+    cursor: wait;
+}
+
+.route-message {
+    padding: 35px 5px;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+
+.route-message strong {
+    font-size: 16px;
+}
+
+.route-message p {
+    margin: 7px 0 0;
+    color: #777;
+    font-size: 14px;
+}
+
+.error-message {
+    border-color: #e5caca;
+}
+
+.results-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    margin-bottom: 20px;
+}
+
+.results-title h2 {
+    margin: 7px 0 0;
+    font-size: 24px;
+}
+
+.results-title small {
+    color: #777;
+}
+
+.route-list {
+    border-top: 1px solid #ddd;
+}
+
+.route-row {
+    display: grid;
+    grid-template-columns: 90px 1.7fr 120px 90px 100px 90px;
+    align-items: center;
+    gap: 20px;
+    padding: 21px 5px;
+    border-bottom: 1px solid #ddd;
+}
+
+.route-number span,
+.route-fare span {
+    display: block;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: #888;
+}
+
+.route-number strong {
+    display: block;
+    margin-top: 5px;
+    font-size: 16px;
+}
+
+.route-location {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.route-location strong {
+    font-size: 14px;
+}
+
+.route-location span {
+    color: #aaa;
+}
+
+.route-info span,
+.route-info small {
+    display: block;
+}
+
+.route-info span {
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.route-info small {
+    color: #777;
+    margin-top: 4px;
+}
+
+.route-fare strong {
+    display: block;
+    margin-top: 5px;
+}
+
+.route-status span {
+    display: inline-block;
+    padding: 5px 9px;
+    border-radius: 20px;
+    background: #f2f7f2;
+    color: #2e7d32;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.route-row button {
+    border: 1px solid #ddd;
+    background: #fff;
+    padding: 9px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.route-row button:hover {
+    border-color: #e85d04;
+    color: #e85d04;
+}
+
+@media (max-width: 900px) {
+    .route-search-new form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .route-search-arrow {
+        display: none;
+    }
+
+    .route-row {
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+    }
+
+    .route-location {
+        grid-column: span 2;
+    }
+}
+
+@media (max-width: 600px) {
+    .routes-main {
+        padding: 40px 18px;
+    }
+
+    .routes-intro h1 {
+        font-size: 34px;
+    }
+
+    .route-row {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .route-location {
+        width: 100%;
+    }
+}
+/* ================================
+   TRANSITGO CLEAN DASHBOARD
+================================ */
+
+.commuter-home {
+    min-height: 100vh;
+    background: #fafafa;
+    color: #171717;
+}
+
+/* NAVBAR */
+
+.commuter-home .main-nav {
+    height: 72px;
+    padding: 0 6%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff;
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.commuter-home .brand {
+    color: #171717;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.commuter-home .brand span {
+    color: #e85d04;
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a,
+.profile-nav {
+    color: #666;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.nav-links a:hover,
+.nav-links a.active,
+.profile-nav:hover {
+    color: #e85d04;
+}
+
+.profile-nav {
+    border: 1px solid #ddd;
+    padding: 9px 17px;
+    border-radius: 6px;
+}
+
+/* HERO */
+
+.travel-hero {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 75px 30px 55px;
+}
+
+.hero-content {
+    max-width: 700px;
+}
+
+.hero-label {
+    color: #e85d04;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.hero-content h1 {
+    margin: 12px 0;
+    font-size: 56px;
+    line-height: 1.05;
+    letter-spacing: -2px;
+}
+
+.hero-content p {
+    max-width: 550px;
+    margin: 0;
+    color: #6b6b6b;
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+/* SEARCH */
+
+.route-search {
+    margin-top: 42px;
+    padding: 25px;
+    background: #fff;
+    border: 1px solid #e2e2e2;
+    border-radius: 10px;
+}
+
+.search-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 22px;
+}
+
+.search-heading strong {
+    font-size: 17px;
+}
+
+.search-heading span {
+    color: #888;
+    font-size: 13px;
+}
+
+.route-search form {
+    display: flex;
+    align-items: end;
+    gap: 14px;
+}
+
+.search-field {
+    flex: 1;
+}
+
+.search-field label {
+    display: block;
+    margin-bottom: 7px;
+    color: #777;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.search-field input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 14px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    outline: none;
+    font-size: 14px;
+    background: #fff;
+}
+
+.search-field input:focus {
+    border-color: #e85d04;
+}
+
+.search-arrow {
+    padding-bottom: 14px;
+    color: #999;
+}
+
+.route-search button {
+    border: 0;
+    background: #e85d04;
+    color: #fff;
+    padding: 14px 23px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.route-search button:hover {
+    background: #cf5003;
+}
+
+/* QUICK ACCESS */
+
+.quick-section {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 25px 30px 70px;
+}
+
+.section-heading {
+    margin-bottom: 20px;
+}
+
+.section-heading span {
+    color: #e85d04;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.4px;
+}
+
+.section-heading h2 {
+    margin: 7px 0 0;
+    font-size: 26px;
+    letter-spacing: -.5px;
+}
+
+.quick-links {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-top: 1px solid #ddd;
+}
+
+.quick-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 92px;
+    padding: 10px 18px;
+    border-bottom: 1px solid #ddd;
+    color: #171717;
+    text-decoration: none;
+    transition: .2s ease;
+}
+
+.quick-link:nth-child(odd) {
+    border-right: 1px solid #ddd;
+}
+
+.quick-link:hover {
+    background: #fff;
+    padding-left: 24px;
+}
+
+.quick-link strong {
+    font-size: 15px;
+}
+
+.quick-link p {
+    margin: 5px 0 0;
+    color: #777;
+    font-size: 13px;
+}
+
+.quick-link > span {
+    color: #e85d04;
+    font-size: 20px;
+}
+
+/* THREE STEPS */
+
+.info-section {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 25px 30px 80px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 45px;
+    border-top: 1px solid #ddd;
+}
+
+.info-block {
+    display: flex;
+    gap: 18px;
+    padding-top: 25px;
+}
+
+.info-block > span {
+    color: #e85d04;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.info-block h3 {
+    margin: 0 0 7px;
+    font-size: 16px;
+}
+
+.info-block p {
+    margin: 0;
+    color: #777;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+/* FOOTER */
+
+.commuter-footer {
+    padding: 45px 6%;
+    background: #171717;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.commuter-footer .brand {
+    color: #fff;
+}
+
+.commuter-footer p {
+    margin: 8px 0 0;
+    color: #aaa;
+    font-size: 12px;
+}
+
+.footer-links {
+    display: flex;
+    gap: 25px;
+}
+
+.footer-links a {
+    color: #ccc;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.footer-links a:hover {
+    color: #e85d04;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 850px) {
+    .nav-links {
+        display: none;
+    }
+
+    .hero-content h1 {
+        font-size: 45px;
+    }
+
+    .route-search form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .search-arrow {
+        display: none;
+    }
+
+    .route-search button {
+        width: 100%;
+    }
+
+    .info-section {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 600px) {
+    .commuter-home .main-nav {
+        padding: 0 20px;
+    }
+
+    .profile-nav {
+        display: none;
+    }
+
+    .travel-hero {
+        padding: 50px 20px 35px;
+    }
+
+    .hero-content h1 {
+        font-size: 38px;
+    }
+
+    .quick-section,
+    .info-section {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .quick-links {
+        grid-template-columns: 1fr;
+    }
+
+    .quick-link:nth-child(odd) {
+        border-right: 0;
+    }
+
+    .search-heading {
+        display: block;
+    }
+
+    .search-heading span {
+        display: block;
+        margin-top: 5px;
+    }
+
+    .commuter-footer {
+        display: block;
+    }
+
+    .footer-links {
+        margin-top: 25px;
+    }
+}
