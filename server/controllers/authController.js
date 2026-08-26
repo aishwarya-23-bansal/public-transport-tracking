@@ -1,24 +1,14 @@
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-
-
-// ===============================
-// REGISTER COMMUTER
-// ===============================
-
 const registerUser = async (req, res) => {
     try {
-
         const {
             name,
             email,
             password,
             phone
         } = req.body;
-
-
-        // Check required fields
         if (!name || !email || !password || !phone) {
             return res.status(400).json({
                 message: "Please provide all required fields"
@@ -43,14 +33,6 @@ const registerUser = async (req, res) => {
             password,
             10
         );
-
-
-        // IMPORTANT:
-        // Public registration ALWAYS creates
-        // a commuter account.
-        //
-        // We deliberately do NOT take role
-        // from req.body.
 
         const user = await User.create({
             name,
@@ -85,12 +67,6 @@ const registerUser = async (req, res) => {
     }
 };
 
-
-
-// ===============================
-// LOGIN
-// ===============================
-
 const loginUser = async (req, res) => {
     try {
 
@@ -98,17 +74,11 @@ const loginUser = async (req, res) => {
             email,
             password
         } = req.body;
-
-
-        // Check required fields
         if (!email || !password) {
             return res.status(400).json({
                 message: "Please provide email and password"
             });
         }
-
-
-        // Find user
         const user = await User.findOne({
             email
         });
@@ -178,11 +148,6 @@ const loginUser = async (req, res) => {
     }
 };
 
-
-
-// ===============================
-// GET PROFILE
-// ===============================
 
 const getProfile = async (req, res) => {
     try {
