@@ -6407,3 +6407,248 @@ a {
         margin-top: 25px;
     }
 }
+/* ================================
+   TRIP HISTORY
+================================ */
+
+.history-page {
+    min-height: 100vh;
+    background: #fafafa;
+    color: #171717;
+}
+
+.history-content {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 65px 30px 90px;
+}
+
+.history-heading {
+    margin-bottom: 35px;
+}
+
+.history-heading > span,
+.history-results-header > div > span {
+    color: #e85d04;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.history-heading h1 {
+    margin: 8px 0;
+    font-size: 42px;
+    letter-spacing: -1.5px;
+}
+
+.history-heading p {
+    margin: 0;
+    color: #777;
+    font-size: 15px;
+}
+
+.history-filters {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 35px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 12px;
+}
+
+.history-filter {
+    border: 0;
+    background: transparent;
+    padding: 9px 15px;
+    color: #777;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.history-filter:hover {
+    color: #e85d04;
+}
+
+.history-filter.active-filter {
+    background: #e85d04;
+    color: #fff;
+}
+
+.history-results {
+    border-top: 1px solid #ddd;
+}
+
+.history-results-header {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    padding: 25px 0 18px;
+}
+
+.history-results-header h2 {
+    margin: 6px 0 0;
+    font-size: 22px;
+}
+
+.history-results-header small {
+    color: #777;
+    font-size: 12px;
+}
+
+.history-list {
+    border-top: 1px solid #ddd;
+}
+
+.history-row {
+    min-height: 90px;
+    display: grid;
+    grid-template-columns: 150px 1fr 150px 110px;
+    align-items: center;
+    gap: 25px;
+    border-bottom: 1px solid #ddd;
+    transition: background .2s ease;
+}
+
+.history-row:hover {
+    background: #fff;
+}
+
+.history-date span {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.history-date small {
+    display: block;
+    margin-top: 5px;
+    color: #999;
+    font-size: 11px;
+}
+
+.history-route {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.history-route strong {
+    font-size: 14px;
+}
+
+.history-route > span {
+    color: #e85d04;
+    font-size: 17px;
+}
+
+.history-route-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.history-route-info span {
+    color: #555;
+    font-size: 12px;
+}
+
+.history-route-info small {
+    color: #111;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.history-status {
+    width: fit-content;
+    padding: 5px 9px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 800;
+}
+
+.history-status.completed {
+    background: #edf7ef;
+    color: #287a3e;
+}
+
+.history-status.cancelled {
+    background: #f8eeee;
+    color: #a33a3a;
+}
+
+.history-message {
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    padding: 55px 20px;
+    text-align: center;
+}
+
+.history-message strong {
+    font-size: 17px;
+}
+
+.history-message p {
+    max-width: 480px;
+    margin: 9px auto 20px;
+    color: #777;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.history-action {
+    display: inline-block;
+    border: 0;
+    background: #e85d04;
+    color: #fff;
+    padding: 11px 18px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.history-action:hover {
+    background: #cf5003;
+}
+
+@media (max-width: 850px) {
+    .history-row {
+        grid-template-columns: 120px 1fr 90px;
+        gap: 15px;
+        padding: 18px 0;
+    }
+
+    .history-route-info {
+        display: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .history-content {
+        padding: 45px 20px 70px;
+    }
+
+    .history-heading h1 {
+        font-size: 34px;
+    }
+
+    .history-row {
+        grid-template-columns: 1fr auto;
+        gap: 12px;
+    }
+
+    .history-route {
+        grid-column: 1 / -1;
+        grid-row: 2;
+    }
+
+    .history-status {
+        justify-self: end;
+    }
+
+    .history-filters {
+        overflow-x: auto;
+    }
+}
