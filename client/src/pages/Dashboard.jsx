@@ -3,280 +3,172 @@ import "../App.css";
 
 function Dashboard() {
     const navigate = useNavigate();
-    const handleLogout = () => {
+    const user = JSON.parse(localStorage.getItem("user") || "null");
+
+    const logout = () => {
         localStorage.removeItem("token");
+        localStorage.removeItem("user");
         navigate("/login");
     };
-    return (
-        <div className="dashboard">
 
-            {/* NAVBAR */}
-            <nav className="navbar">
-                <Link to="/dashboard" className="dashboard-logo">
-                    Transit<span>Go</span>
-                </Link>
-                <div className="nav-right">
-                    <Link to="/profile" className="profile-link">
-                        Profile
-                    </Link>
-                    <button
-                        className="logout-button"
-                        onClick={handleLogout}
-                    >
-                        Logout
-                    </button>
+    return (
+        <div className="commuter-home">
+            <nav className="main-nav">
+                <Link to="/dashboard" className="brand">Transit<span>Go</span></Link>
+
+                <div className="nav-links">
+                    <Link to="/dashboard">Home</Link>
+                    <Link to="/routes">Routes</Link>
+                    <Link to="/tickets">Tickets</Link>
+                    <Link to="/history">History</Link>
+                    <Link to="/alerts">Updates</Link>
+                </div>
+
+                <div className="nav-user">
+                    <Link to="/profile">{user?.name || "Profile"}</Link>
+                    <button onClick={logout}>Logout</button>
                 </div>
             </nav>
 
-            {/* MAIN */}
-            <main className="dashboard-content">
+            <main>
+                <section className="travel-hero">
+                    <div className="hero-content">
+                        <span className="hero-label">TRANSITGO FOR COMMUTERS</span>
+                        <h1>Move smarter.<br />Travel easier.</h1>
+                        <p>Find routes, track your journey and manage your public transport trips in one place.</p>
+                    </div>
 
-                {/* WELCOME */}
-                <section className="welcome-section">
+                    <div className="route-search">
+                        <div className="search-title">
+                            <span>PLAN YOUR JOURNEY</span>
+                            <h2>Where do you want to go?</h2>
+                        </div>
+
+                        <div className="search-fields">
+                            <div className="search-field">
+                                <label>FROM</label>
+                                <input type="text" placeholder="Starting point" />
+                            </div>
+
+                            <div className="search-direction">→</div>
+
+                            <div className="search-field">
+                                <label>TO</label>
+                                <input type="text" placeholder="Destination" />
+                            </div>
+
+                            <Link to="/routes" className="find-route-btn">Find Routes</Link>
+                        </div>
+                    </div>
+                </section>
+
+                <section className="services-section">
+                    <div className="section-title">
+                        <span>TRAVEL SERVICES</span>
+                        <h2>What do you need?</h2>
+                    </div>
+
+                    <div className="service-links">
+                        <Link to="/routes">
+                            <span>⌕</span>
+                            <div>
+                                <strong>Find a Route</strong>
+                                <small>Search available transport</small>
+                            </div>
+                            <b>→</b>
+                        </Link>
+
+                        <Link to="/tickets">
+                            <span>▣</span>
+                            <div>
+                                <strong>My Tickets</strong>
+                                <small>View your active tickets</small>
+                            </div>
+                            <b>→</b>
+                        </Link>
+
+                        <Link to="/saved-routes">
+                            <span>☆</span>
+                            <div>
+                                <strong>Saved Routes</strong>
+                                <small>Access your favourite routes</small>
+                            </div>
+                            <b>→</b>
+                        </Link>
+
+                        <Link to="/alerts">
+                            <span>!</span>
+                            <div>
+                                <strong>Service Updates</strong>
+                                <small>Check transport alerts</small>
+                            </div>
+                            <b>→</b>
+                        </Link>
+                    </div>
+                </section>
+
+                <section className="travel-section">
+                    <div className="section-title">
+                        <span>YOUR TRAVEL</span>
+                        <h2>Travel overview</h2>
+                    </div>
+
+                    <div className="travel-stats">
+                        <div>
+                            <span>ACTIVE TICKETS</span>
+                            <strong>0</strong>
+                            <small>No active tickets</small>
+                        </div>
+
+                        <div>
+                            <span>UPCOMING TRIPS</span>
+                            <strong>0</strong>
+                            <small>No upcoming trips</small>
+                        </div>
+
+                        <div>
+                            <span>SAVED ROUTES</span>
+                            <strong>0</strong>
+                            <small>No saved routes</small>
+                        </div>
+                    </div>
+                </section>
+
+                <section className="updates-section">
+                    <div className="section-title">
+                        <span>TRAVEL INFORMATION</span>
+                        <h2>Service updates</h2>
+                    </div>
+
+                    <div className="empty-update">
+                        <div>
+                            <strong>No current service alerts</strong>
+                            <p>There are no major disruptions affecting your routes.</p>
+                        </div>
+                        <Link to="/alerts">View all updates →</Link>
+                    </div>
+                </section>
+
+                <section className="history-section">
                     <div>
-                        <p className="welcome-label">
-                            COMMUTER DASHBOARD
-                        </p>
-                        <h1>
-                            Welcome back!
-                        </h1>
-                        <p className="welcome-description">
-                            Plan your journey, find routes and manage
-                            your travel information.
-                        </p>
-                    </div>
-                </section>
-
-                {/* ROUTE SEARCH */}
-
-                {/* STATISTICS */}
-                <section className="stats">
-                    <div className="stat-card">
-                        <div>
-                            <p className="stat-label">
-                                ACTIVE TICKETS
-                            </p>
-                            <h3>
-                                0
-                            </h3>
-                            <p className="stat-description">
-                                No active tickets
-                            </p>
-                        </div>
-                    </div>
-                    <div className="stat-card">
-                        <div>
-                            <p className="stat-label">
-                                SAVED ROUTES
-                            </p>
-                            <h3>
-                                0
-                            </h3>
-                            <p className="stat-description">
-                                No saved routes
-                            </p>
-                        </div>
-                    </div>
-                    <div className="stat-card">
-                        <div>
-                            <p className="stat-label">
-                                UPCOMING TRIPS
-                            </p>
-                            <h3>
-                                0
-                            </h3>
-                            <p className="stat-description">
-                                No upcoming trips
-                            </p>
-                        </div>
-                    </div>
-                </section>
-
-                {/* UPCOMING TRIP */}
-                <section className="dashboard-section">
-                    <div className="section-heading">
-                        <div>
-                            <h2>
-                                Upcoming Trip
-                            </h2>
-                            <p>
-                                Your next scheduled journey
-                            </p>
-                        </div>
-                    </div>
-                    <div className="empty-card">
-                        <h3>
-                            No upcoming trips
-                        </h3>
-                        <p>
-                            You don't have any scheduled trips yet.
-                            Search for a route to plan your journey.
-                        </p>
-                        <Link
-                            to="/routes"
-                            className="primary-button"
-                        >
-                            Find a Route
-                        </Link>
-                    </div>
-                </section>
-
-                {/* QUICK ACTIONS */}
-                <section className="dashboard-section">
-                    <div className="section-heading">
-                        <div>
-                            <h2>
-                                Quick Actions
-                            </h2>
-                            <p>
-                                Access frequently used features
-                            </p>
-                        </div>
+                        <span>YOUR JOURNEYS</span>
+                        <h2>Keep track of your travel</h2>
+                        <p>View previous trips, tickets and your saved routes.</p>
                     </div>
 
-                    <div className="quick-actions">
-
-                        {/* ROUTES */}
-                        <Link
-                            to="/routes"
-                            className="action-card action-link"
-                        >
-                            <div className="action-content">
-                                <h3>
-                                    Search Routes
-                                </h3>
-                                <p>
-                                    Find available public transport
-                                    routes between your locations.
-                                </p>
-                                <span className="action-button">
-                                    Find a Route
-                                </span>
-                            </div>
-                        </Link>
-
-                        {/* TICKETS */}
-                        <Link
-                            to="/tickets"
-                            className="action-card action-link"
-                        >
-                            <div className="action-content">
-
-                                <h3>My Tickets</h3>
-
-                                <p>
-                                    View and manage your transport
-                                    tickets and bookings.
-                                </p>
-
-                                <span className="action-button">
-                                    View Tickets
-                                </span>
-
-                            </div>
-                        </Link>
-                        {/* PROFILE */}
-                        <Link
-                            to="/profile"
-                            className="action-card action-link"
-                        >
-                            <div className="action-content">
-                                <h3>
-                                    Profile
-                                </h3>
-                                <p>
-                                    Manage your personal information
-                                    and emergency contact.
-                                </p>
-                                <span className="action-button">
-                                    View Profile
-                                </span>
-                            </div>
-                        </Link>
-                        {/* alerts */}
-                        <Link
-                            to="/alerts"
-                            className="action-card action-link"
-                        >
-                            <div className="action-content">
-
-                                <h3>Travel Alerts</h3>
-
-                                <p>
-                                    Check service disruptions and important
-                                    travel updates.
-                                </p>
-
-                                <span className="action-button">
-                                    View Alerts
-                                </span>
-
-                            </div>
-                        </Link>
-                        {/* notifications */}
-                        <Link
-                            to="/notifications"
-                            className="action-card action-link"
-                        >
-                            <div className="action-content">
-
-                                <h3>Notifications</h3>
-
-                                <p>
-                                    View account updates and important
-                                    journey notifications.
-                                </p>
-
-                                <span className="action-button">
-                                    View Notifications
-                                </span>
-
-                            </div>
-                        </Link>
-                        {/* trip history */}
-                            <Link
-                                    to="/history"
-                                    className="action-card action-link"
-                                >
-                                    <div className="action-content">
-
-                                        <h3>Trip History</h3>
-
-                                        <p>
-                                            View your previous journeys and
-                                            travel details.
-                                        </p>
-
-                                        <span className="action-button">
-                                            View History
-                                        </span>
-
-                                    </div>
-                                </Link>
-                            {/* saved routes */}
-                        <Link
-                            to="/saved-routes"
-                            className="action-card action-link"
-                        >
-                            <div className="action-content">
-
-                                <h3>Saved Routes</h3>
-
-                                <p>
-                                    Quickly access your frequently used
-                                    transport routes.
-                                </p>
-
-                                <span className="action-button">
-                                    View Saved Routes
-                                </span>
-
-                            </div>
-                        </Link>
+                    <div className="history-actions">
+                        <Link to="/history">Trip History →</Link>
+                        <Link to="/profile">My Profile →</Link>
                     </div>
                 </section>
             </main>
+
+            <footer className="commuter-footer">
+                <div className="brand">Transit<span>Go</span></div>
+                <p>Making public transport simpler, smarter and more accessible.</p>
+            </footer>
         </div>
     );
 }
+
 export default Dashboard;
