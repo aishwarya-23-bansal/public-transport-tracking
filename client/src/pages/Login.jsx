@@ -6,25 +6,27 @@ import api from "../services/api";
 function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
+    const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
 
     const handleLogin = async (e) => {
         e.preventDefault();
+        setError("");
+        setLoading(true);
 
         try {
             const response = await api.post("/auth/login", {
                 email,
                 password
             });
-            console.log(response.data);
+
             const token = response.data.token;
             const user = response.data.user;
 
             localStorage.setItem("token", token);
             localStorage.setItem("user", JSON.stringify(user));
-
-            alert("Login successful!");
 
             if (user.role === "commuter") {
                 navigate("/dashboard");
@@ -33,20 +35,24 @@ function Login() {
             } else if (user.role === "admin") {
                 navigate("/admin");
             } else {
-                alert("Unknown user role");
+                setError("Invalid account role.");
             }
 
         } catch (error) {
             console.error(error);
-            alert(
+
+            setError(
                 error.response?.data?.message ||
-                "Login failed"
+                "Invalid email or password."
             );
+        } finally {
+            setLoading(false);
         }
     };
 
     return (
         <div className="login-page">
+
             <div className="login-left">
                 <div className="brand">
                     <div className="logo"></div>
@@ -64,14 +70,12 @@ function Login() {
                     <div className="features">
                         <div>Real-time route tracking</div>
                         <div>Easy ticket booking</div>
-                        <div> Smart ETA updates</div>
+                        <div>Smart ETA updates</div>
                     </div>
                 </div>
             </div>
 
-
             <div className="login-right">
-
                 <div className="login-card">
 
                     <div className="mobile-logo">
@@ -84,6 +88,12 @@ function Login() {
                         Login to continue your journey
                     </p>
 
+                    {error && (
+                        <div className="form-error">
+                            {error}
+                        </div>
+                    )}
+
                     <form onSubmit={handleLogin}>
 
                         <div className="input-group">
@@ -93,11 +103,13 @@ function Login() {
                                 type="email"
                                 placeholder="Enter your email"
                                 value={email}
-                                onChange={(e) => setEmail(e.target.value)}
+                                onChange={(e) => {
+                                    setEmail(e.target.value);
+                                    setError("");
+                                }}
                                 required
                             />
                         </div>
-
 
                         <div className="input-group">
                             <label>Password</label>
@@ -106,11 +118,13 @@ function Login() {
                                 type="password"
                                 placeholder="Enter your password"
                                 value={password}
-                                onChange={(e) => setPassword(e.target.value)}
+                                onChange={(e) => {
+                                    setPassword(e.target.value);
+                                    setError("");
+                                }}
                                 required
                             />
                         </div>
-
 
                         <div className="login-options">
                             <label className="remember">
@@ -121,18 +135,19 @@ function Login() {
                             <a href="#">Forgot password?</a>
                         </div>
 
-
-                        <button className="login-button" type="submit">
-                            Login →
+                        <button
+                            className="login-button"
+                            type="submit"
+                            disabled={loading}
+                        >
+                            {loading ? "Logging in..." : "Login →"}
                         </button>
 
                     </form>
 
-
                     <div className="divider">
                         <span>OR</span>
                     </div>
-
 
                     <p className="register-text">
                         Don't have an account?
@@ -140,8 +155,8 @@ function Login() {
                     </p>
 
                 </div>
-
             </div>
+
         </div>
     );
 }
