@@ -1,4 +1,6 @@
 const User = require("../models/User");
+const Route = require("../models/Route");
+const Ticket = require("../models/Ticket");
 const bcrypt = require("bcryptjs");
 
 // Get logged-in user's profile
@@ -260,6 +262,89 @@ const getUserByIdAdmin = async (req, res) => {
         });
     }
 };
+const updateUserAdmin = async (req, res) => {
+    try {
+        const { name, email, phone, role } = req.body;
+
+        if (role && !["commuter", "operator", "admin"].includes(role)) {
+            return res.status(400).json({ message: "Invalid role" });
+        }
+
+        const user = await User.findByIdAndUpdate(
+            req.params.id,
+            { name, email, phone, role },
+            { new: true, runValidators: true }
+        ).select("-password");
+
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
+
+        res.json({ message: "User updated successfully", user });
+    } catch (error) {
+        res.status(500).json({ message: "Server error" });
+    }
+};
+
+const deleteUserAdmin = async (req, res) => {
+    try {
+        if (req.params.id === req.user._id.toString()) {
+            return res.status(400).json({
+                message: "Admin cannot delete their own account"
+            });
+        }
+
+        const user = await User.findByIdAndDelete(req.params.id);
+
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
+
+        res.json({ message: "User deleted successfully" });
+    } catch (error) {
+        res.status(500).json({ message: "Server error" });
+    }
+};
+const getAdminStats = async (req, res) => {
+    try {
+        const startOfToday = new Date();
+        startOfToday.setHours(0, 0, 0, 0);
+
+        const endOfToday = new Date();
+        endOfToday.setHours(23, 59, 59, 999);
+
+        const totalUsers = await User.countDocuments();
+
+        const operators = await User.countDocuments({
+            role: "operator"
+        });
+
+        const activeRoutes = await Route.countDocuments({
+            status: "Active"
+        });
+
+        const todaysBookings = await Ticket.countDocuments({
+            createdAt: {
+                $gte: startOfToday,
+                $lte: endOfToday
+            }
+        });
+
+        res.status(200).json({
+            totalUsers,
+            activeRoutes,
+            operators,
+            todaysBookings
+        });
+
+    } catch (error) {
+        console.error("Admin stats error:", error);
+
+        res.status(500).json({
+            message: "Failed to fetch admin statistics"
+        });
+    }
+};
 module.exports = {
     getProfile,
     updateProfile,
@@ -267,5 +352,8 @@ module.exports = {
     uploadProfileImage,
     getAllUsers,
     createAdminUser,
-    getUserByIdAdmin
+    getUserByIdAdmin,
+    updateUserAdmin,
+    deleteUserAdmin,
+    getAdminStats
 };

@@ -1,23 +1,37 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import api from "../services/api";
 import "../App.css";
 
 function RouteDetails() {
     const { id } = useParams();
-    const [journeyDate, setJourneyDate] = useState("");
-    const [booking, setBooking] = useState(false);
-    const [bookingMessage, setBookingMessage] = useState("");
+    const navigate = useNavigate();
+
     const [route, setRoute] = useState(null);
+    const [journeyDate, setJourneyDate] = useState("");
+
     const [loading, setLoading] = useState(true);
+    const [booking, setBooking] = useState(false);
+    const [saving, setSaving] = useState(false);
+    const [saved, setSaved] = useState(false);
+
+    const [bookingMessage, setBookingMessage] = useState("");
+    const [saveMessage, setSaveMessage] = useState("");
     const [error, setError] = useState("");
 
     useEffect(() => {
         fetchRoute();
+        checkIfSaved();
     }, [id]);
+
+    // -----------------------------
+    // GET ROUTE
+    // -----------------------------
 
     const fetchRoute = async () => {
         try {
+            setLoading(true);
+
             const response = await api.get(`/routes/${id}`);
 
             setRoute(response.data.route);
@@ -34,9 +48,91 @@ function RouteDetails() {
             setLoading(false);
         }
     };
+
+    // -----------------------------
+    // CHECK IF ROUTE IS SAVED
+    // -----------------------------
+
+    const checkIfSaved = async () => {
+        try {
+            const response = await api.get("/saved-routes");
+
+            const savedRoutes = response.data.savedRoutes || [];
+
+            const alreadySaved = savedRoutes.some(
+                (item) =>
+                    item.route?._id === id
+            );
+
+            setSaved(alreadySaved);
+
+        } catch (error) {
+            console.error("Check saved route error:", error);
+        }
+    };
+
+    // -----------------------------
+    // SAVE / REMOVE ROUTE
+    // -----------------------------
+
+    const handleSaveRoute = async () => {
+        try {
+            setSaving(true);
+            setSaveMessage("");
+
+            if (!saved) {
+
+                await api.post("/saved-routes", {
+                    routeId: id
+                });
+
+                setSaved(true);
+                setSaveMessage("Route saved successfully.");
+
+            } else {
+
+                const response = await api.get("/saved-routes");
+
+                const savedRoutes = response.data.savedRoutes || [];
+
+                const savedRoute = savedRoutes.find(
+                    (item) =>
+                        item.route?._id === id
+                );
+
+                if (savedRoute) {
+                    await api.delete(
+                        `/saved-routes/${savedRoute._id}`
+                    );
+                }
+
+                setSaved(false);
+                setSaveMessage("Route removed from saved routes.");
+            }
+
+        } catch (error) {
+            console.error("Save route error:", error);
+
+            setSaveMessage(
+                error.response?.data?.message ||
+                "Unable to update saved route."
+            );
+
+        } finally {
+            setSaving(false);
+        }
+    };
+
+    // -----------------------------
+    // BOOK ROUTE
+    // -----------------------------
+
     const handleBooking = async () => {
+
         if (!journeyDate) {
-            setBookingMessage("Please select a journey date.");
+            setBookingMessage(
+                "Please select a journey date."
+            );
             return;
         }
 
@@ -70,6 +166,11 @@ function RouteDetails() {
             setBooking(false);
         }
     };
+
+    // -----------------------------
+    // LOADING
+    // -----------------------------
+
     if (loading) {
         return (
             <div className="routes-page">
@@ -80,6 +181,10 @@ function RouteDetails() {
         );
     }
 
+    // -----------------------------
+    // ERROR
+    // -----------------------------
+
     if (error || !route) {
         return (
             <div className="routes-page">
@@ -89,7 +194,8 @@ function RouteDetails() {
                     <h2>Route not found</h2>
 
                     <p>
-                        {error || "Unable to load this route."}
+                        {error ||
+                            "Unable to load this route."}
                     </p>
 
                     <Link
@@ -104,6 +210,10 @@ function RouteDetails() {
             </div>
         );
     }
+
+    // -----------------------------
+    // PAGE
+    // -----------------------------
 
     return (
         <div className="routes-page">
@@ -137,7 +247,6 @@ function RouteDetails() {
 
             </nav>
 
-
             <main className="routes-content">
 
                 <div className="routes-heading">
@@ -150,8 +259,9 @@ function RouteDetails() {
 
                 </div>
 
-
                 <div className="route-detail-card">
+
+                    {/* HEADER */}
 
                     <div className="route-detail-header">
 
@@ -170,39 +280,59 @@ function RouteDetails() {
                         </span>
 
                     </div>
+
+
+                    {/* ROUTE INFORMATION */}
+
                     <div className="route-detail-info">
 
                         <div>
                             <span>From</span>
-                            <strong>{route.source}</strong>
+                            <strong>
+                                {route.source}
+                            </strong>
                         </div>
 
                         <div>
                             <span>Destination</span>
-                            <strong>{route.destination}</strong>
+                            <strong>
+                                {route.destination}
+                            </strong>
                         </div>
 
                         <div>
                             <span>Distance</span>
-                            <strong>{route.distance} km</strong>
+                            <strong>
+                                {route.distance} km
+                            </strong>
                         </div>
 
                         <div>
                             <span>Duration</span>
-                            <strong>{route.duration} min</strong>
+                            <strong>
+                                {route.duration} min
+                            </strong>
                         </div>
 
                         <div>
                             <span>Fare</span>
-                            <strong>₹{route.fare}</strong>
+                            <strong>
+                                ₹{route.fare}
+                            </strong>
                         </div>
 
                         <div>
                             <span>Total Stops</span>
-                            <strong>{route.stops?.length || 0}</strong>
+                            <strong>
+                                {route.stops?.length || 0}
+                            </strong>
                         </div>
 
                     </div>
+
+
+                    {/* STOPS */}
+
                     <div className="route-stop-section">
 
                         <h3>Route Stops</h3>
@@ -211,11 +341,13 @@ function RouteDetails() {
 
                             <div className="route-stop-list">
 
-                                {route.stops.map((stop, index) => (
-                                    <div key={index}>
-                                        {index + 1}. {stop}
-                                    </div>
-                                ))}
+                                {route.stops.map(
+                                    (stop, index) => (
+                                        <div key={index}>
+                                            {index + 1}. {stop}
+                                        </div>
+                                    )
+                                )}
 
                             </div>
 
@@ -228,12 +360,47 @@ function RouteDetails() {
                         )}
 
                     </div>
+
+
+                    {/* SAVE ROUTE */}
+
+                    <div className="save-route-section">
+
+                        <button
+                            type="button"
+                            className="save-route-button"
+                            onClick={handleSaveRoute}
+                            disabled={saving}
+                        >
+
+                            {saving
+                                ? "Updating..."
+                                : saved
+                                    ? "★ Saved Route"
+                                    : "☆ Save Route"}
+
+                        </button>
+
+                        {saveMessage && (
+                            <p className="save-route-message">
+                                {saveMessage}
+                            </p>
+                        )}
+
+                    </div>
+
+
+                    {/* BOOKING */}
+
                     <div className="booking-section">
 
-                        <h3>Book This Route</h3>
+                        <h3>
+                            Book This Route
+                        </h3>
 
                         <p>
-                            Select your journey date to book this route.
+                            Select your journey date to book
+                            this route.
                         </p>
 
                         <div className="booking-form">
@@ -249,7 +416,9 @@ function RouteDetails() {
                                     type="date"
                                     value={journeyDate}
                                     onChange={(e) =>
-                                        setJourneyDate(e.target.value)
+                                        setJourneyDate(
+                                            e.target.value
+                                        )
                                     }
                                     min={
                                         new Date()
@@ -260,20 +429,20 @@ function RouteDetails() {
 
                             </div>
 
-
                             <button
                                 type="button"
                                 className="book-route-button"
                                 onClick={handleBooking}
                                 disabled={booking}
                             >
+
                                 {booking
                                     ? "Booking..."
                                     : "Book This Route"}
+
                             </button>
 
                         </div>
-
 
                         {bookingMessage && (
                             <p className="booking-message">
@@ -282,6 +451,8 @@ function RouteDetails() {
                         )}
 
                     </div>
+
+
                     <Link
                         to="/routes"
                         className="route-back-button"

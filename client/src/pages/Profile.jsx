@@ -16,7 +16,9 @@ function Profile() {
 
     const [message, setMessage] = useState("");
     const [loading, setLoading] = useState(true);
+    const [saving, setSaving] = useState(false);
     const [uploadingImage, setUploadingImage] = useState(false);
+    const [error, setError] = useState("");
 
     useEffect(() => {
         fetchProfile();
@@ -24,8 +26,10 @@ function Profile() {
 
     const fetchProfile = async () => {
         try {
-            const response = await api.get("/users/profile");
+            setLoading(true);
+            setError("");
 
+            const response = await api.get("/users/profile");
             const user = response.data.user;
 
             setProfile({
@@ -37,9 +41,9 @@ function Profile() {
                 emergencyContactPhone: user.emergencyContactPhone || "",
                 profileImage: user.profileImage || ""
             });
-
         } catch (error) {
             console.error("Profile fetch error:", error);
+            setError(error.response?.data?.message || "Unable to load profile.");
         } finally {
             setLoading(false);
         }
@@ -56,6 +60,10 @@ function Profile() {
         e.preventDefault();
 
         try {
+            setSaving(true);
+            setMessage("");
+            setError("");
+
             await api.put("/users/profile", {
                 name: profile.name,
                 phone: profile.phone,
@@ -65,21 +73,14 @@ function Profile() {
 
             setMessage("Profile updated successfully.");
 
-            setTimeout(() => {
-                setMessage("");
-            }, 3000);
-
+            setTimeout(() => setMessage(""), 3000);
         } catch (error) {
-            console.error(error);
+            console.error("Profile update error:", error);
+            setMessage(error.response?.data?.message || "Unable to update profile.");
 
-            setMessage(
-                error.response?.data?.message ||
-                "Unable to update profile."
-            );
-
-            setTimeout(() => {
-                setMessage("");
-            }, 3000);
+            setTimeout(() => setMessage(""), 3000);
+        } finally {
+            setSaving(false);
         }
     };
 
@@ -88,59 +89,55 @@ function Profile() {
 
         if (!file) return;
 
-        setUploadingImage(true);
-
         try {
-            const formData = new FormData();
+            setUploadingImage(true);
+            setMessage("");
+            setError("");
 
+            const formData = new FormData();
             formData.append("profileImage", file);
 
-            await api.put(
-                "/users/profile/image",
-                formData
-            );
+            await api.put("/users/profile/image", formData);
 
-            setMessage("Profile photo updated successfully.");
-
-            /*
-             * Fetch the profile again after upload.
-             * This guarantees we use the exact image
-             * path returned by the backend.
-             */
             await fetchProfile();
 
-            setTimeout(() => {
-                setMessage("");
-            }, 3000);
-
+            setMessage("Profile photo updated successfully.");
+            setTimeout(() => setMessage(""), 3000);
         } catch (error) {
             console.error("Image upload error:", error);
-
-            setMessage(
-                error.response?.data?.message ||
-                "Unable to upload profile photo."
-            );
-
-            setTimeout(() => {
-                setMessage("");
-            }, 3000);
-
+            setMessage(error.response?.data?.message || "Unable to upload profile photo.");
+            setTimeout(() => setMessage(""), 3000);
         } finally {
             setUploadingImage(false);
+            e.target.value = "";
         }
     };
 
+    const handleReset = async () => {
+        setMessage("");
+        await fetchProfile();
+    };
+
     if (loading) {
+        return <div className="profile-loading">Loading profile...</div>;
+    }
+
+    if (error) {
         return (
-            <div className="profile-loading">
-                Loading profile...
+            <div className="profile-page">
+                <div className="empty-history">
+                    <h3>Unable to load profile</h3>
+                    <p>{error}</p>
+                    <button className="primary-button" onClick={fetchProfile}>
+                        Try Again
+                    </button>
+                </div>
             </div>
         );
     }
 
     return (
         <div className="profile-page">
-
             {message && (
                 <div className="toast success">
                     <span className="toast-icon">✓</span>
@@ -149,31 +146,19 @@ function Profile() {
             )}
 
             <div className="profile-header">
-
                 <div>
                     <h1>Profile</h1>
-
-                    <p>
-                        Manage your personal information and preferences.
-                    </p>
+                    <p>Manage your personal information and preferences.</p>
                 </div>
 
-                <Link
-                    to="/dashboard"
-                    className="back-button"
-                >
+                <Link to="/dashboard" className="back-button">
                     Back to Dashboard
                 </Link>
-
             </div>
 
-
             <div className="profile-container">
-
                 <div className="profile-summary">
-
                     <div className="profile-image">
-
                         {profile.profileImage ? (
                             <img
                                 src={`http://localhost:8000${profile.profileImage}`}
@@ -181,32 +166,16 @@ function Profile() {
                             />
                         ) : (
                             <span>
-                                {profile.name
-                                    ? profile.name
-                                        .charAt(0)
-                                        .toUpperCase()
-                                    : "U"}
+                                {profile.name ? profile.name.charAt(0).toUpperCase() : "U"}
                             </span>
                         )}
-
                     </div>
 
-
-                    <h2>
-                        {profile.name}
-                    </h2>
-
-                    <p className="profile-role">
-                        {profile.role || "Commuter"}
-                    </p>
-
+                    <h2>{profile.name}</h2>
+                    <p className="profile-role">{profile.role || "Commuter"}</p>
 
                     <label className="change-photo-button">
-
-                        {uploadingImage
-                            ? "Uploading..."
-                            : "Change Photo"}
-
+                        {uploadingImage ? "Uploading..." : "Change Photo"}
                         <input
                             type="file"
                             accept="image/*"
@@ -214,169 +183,98 @@ function Profile() {
                             hidden
                             disabled={uploadingImage}
                         />
-
                     </label>
-
 
                     <div className="profile-divider"></div>
 
-
                     <div className="profile-info">
-
                         <div>
                             <span>Email</span>
-
-                            <strong>
-                                {profile.email}
-                            </strong>
+                            <strong>{profile.email}</strong>
                         </div>
 
                         <div>
                             <span>Phone</span>
-
-                            <strong>
-                                {profile.phone || "Not added"}
-                            </strong>
+                            <strong>{profile.phone || "Not added"}</strong>
                         </div>
-
                     </div>
-
                 </div>
 
-
                 <div className="profile-details">
-
                     <div className="details-header">
-
-                        <h2>
-                            Personal Information
-                        </h2>
-
-                        <p>
-                            Update your account information below.
-                        </p>
-
+                        <h2>Personal Information</h2>
+                        <p>Update your account information below.</p>
                     </div>
 
-
                     <form onSubmit={handleSubmit}>
-
                         <div className="profile-grid">
-
                             <div className="profile-field">
-
                                 <label>Full Name</label>
-
                                 <input
                                     type="text"
                                     name="name"
                                     value={profile.name}
                                     onChange={handleChange}
+                                    required
                                 />
-
                             </div>
 
-
                             <div className="profile-field">
-
                                 <label>Email Address</label>
-
-                                <input
-                                    type="email"
-                                    value={profile.email}
-                                    disabled
-                                />
-
+                                <input type="email" value={profile.email} disabled />
                             </div>
 
-
                             <div className="profile-field">
-
                                 <label>Phone Number</label>
-
                                 <input
-                                    type="text"
+                                    type="tel"
                                     name="phone"
                                     value={profile.phone}
                                     onChange={handleChange}
                                 />
-
                             </div>
-
 
                             <div className="profile-field">
-
                                 <label>Account Role</label>
-
-                                <input
-                                    type="text"
-                                    value={profile.role}
-                                    disabled
-                                />
-
+                                <input type="text" value={profile.role} disabled />
                             </div>
-
                         </div>
 
-
                         <div className="emergency-box">
-
                             <div className="emergency-heading">
-
                                 <h3>Emergency Contact</h3>
-
-                                <p>
-                                    Keep a trusted contact available
-                                    for emergencies.
-                                </p>
-
+                                <p>Keep a trusted contact available for emergencies.</p>
                             </div>
 
-
                             <div className="profile-grid">
-
                                 <div className="profile-field">
-
                                     <label>Contact Name</label>
-
                                     <input
                                         type="text"
                                         name="emergencyContactName"
-                                        value={
-                                            profile.emergencyContactName
-                                        }
+                                        value={profile.emergencyContactName}
                                         onChange={handleChange}
                                     />
-
                                 </div>
-
 
                                 <div className="profile-field">
-
                                     <label>Contact Phone</label>
-
                                     <input
-                                        type="text"
+                                        type="tel"
                                         name="emergencyContactPhone"
-                                        value={
-                                            profile.emergencyContactPhone
-                                        }
+                                        value={profile.emergencyContactPhone}
                                         onChange={handleChange}
                                     />
-
                                 </div>
-
                             </div>
-
                         </div>
 
-
                         <div className="form-footer">
-
                             <button
                                 type="button"
                                 className="cancel-button"
-                                onClick={fetchProfile}
+                                onClick={handleReset}
+                                disabled={saving || uploadingImage}
                             >
                                 Reset
                             </button>
@@ -384,18 +282,14 @@ function Profile() {
                             <button
                                 type="submit"
                                 className="save-button"
+                                disabled={saving || uploadingImage}
                             >
-                                Save Changes
+                                {saving ? "Saving..." : "Save Changes"}
                             </button>
-
                         </div>
-
                     </form>
-
                 </div>
-
             </div>
-
         </div>
     );
 }

@@ -5408,7 +5408,7 @@ a {
 }
 
 .brand span {
-    color: #e85d04;
+    color: #1f5fd1;
 }
 
 .nav-links {
@@ -5425,7 +5425,7 @@ a {
 
 .nav-links a:hover,
 .nav-user a:hover {
-    color: #e85d04;
+    color: #1f5fd1;
 }
 
 .nav-user {
@@ -5458,7 +5458,7 @@ a {
     font-size: 11px;
     font-weight: 800;
     letter-spacing: 1.5px;
-    color: #e85d04;
+    color: #1f5fd1;
 }
 
 .hero-content h1 {
@@ -5526,7 +5526,7 @@ a {
 }
 
 .search-field input:focus {
-    border-color: #e85d04;
+    border-color: #1f5fd1;
 }
 
 .search-direction {
@@ -5536,7 +5536,7 @@ a {
 
 .find-route-btn {
     text-decoration: none;
-    background: #e85d04;
+    background: #1f5fd1;
     color: #fff;
     padding: 14px 22px;
     border-radius: 7px;
@@ -5584,8 +5584,8 @@ a {
     display: grid;
     place-items: center;
     border-radius: 50%;
-    background: #fff1e8;
-    color: #e85d04;
+    background:  #eff6ff;
+    color: #1f5fd1;
     font-size: 20px;
 }
 
@@ -5666,7 +5666,7 @@ a {
 
 .empty-update a,
 .history-actions a {
-    color: #e85d04;
+    color: #1f5fd1;
     text-decoration: none;
     font-weight: 700;
     font-size: 14px;
@@ -5686,7 +5686,7 @@ a {
 .history-section > div:first-child > span {
     font-size: 11px;
     font-weight: 800;
-    color: #e85d04;
+    color: #1f5fd1;
     letter-spacing: 1.3px;
 }
 
@@ -5780,7 +5780,7 @@ a {
     font-size: 11px;
     font-weight: 800;
     letter-spacing: 1.4px;
-    color: #e85d04;
+    color: #1f5fd1;
 }
 
 .routes-intro h1 {
@@ -5833,7 +5833,7 @@ a {
 }
 
 .route-search-input input:focus {
-    border-color: #e85d04;
+    border-color: #1f5fd1;
 }
 
 .route-search-arrow {
@@ -5843,7 +5843,7 @@ a {
 
 .route-search-new button {
     border: 0;
-    background: #e85d04;
+    background: #1f5fd1;
     color: #fff;
     padding: 14px 22px;
     border-radius: 7px;
@@ -5974,8 +5974,8 @@ a {
 }
 
 .route-row button:hover {
-    border-color: #e85d04;
-    color: #e85d04;
+    border-color: #1f5fd1;
+    color: #1f5fd1;
 }
 
 @media (max-width: 900px) {
@@ -6047,7 +6047,7 @@ a {
 }
 
 .commuter-home .brand span {
-    color: #e85d04;
+    color: #1f5fd1;
 }
 
 .nav-links {
@@ -6066,7 +6066,7 @@ a {
 .nav-links a:hover,
 .nav-links a.active,
 .profile-nav:hover {
-    color: #e85d04;
+    color: #1f5fd1;
 }
 
 .profile-nav {
@@ -6088,7 +6088,7 @@ a {
 }
 
 .hero-label {
-    color: #e85d04;
+    color: #1f5fd1;
     font-size: 11px;
     font-weight: 800;
     letter-spacing: 1.5px;
@@ -6166,7 +6166,7 @@ a {
 }
 
 .search-field input:focus {
-    border-color: #e85d04;
+    border-color: #1f5fd1;
 }
 
 .search-arrow {
@@ -6176,7 +6176,7 @@ a {
 
 .route-search button {
     border: 0;
-    background: #e85d04;
+    background: #1f5fd1;
     color: #fff;
     padding: 14px 23px;
     border-radius: 6px;
@@ -6203,7 +6203,7 @@ a {
 }
 
 .section-heading span {
-    color: #e85d04;
+    color: #1f5fd1;
     font-size: 10px;
     font-weight: 800;
     letter-spacing: 1.4px;
@@ -6253,7 +6253,7 @@ a {
 }
 
 .quick-link > span {
-    color: #e85d04;
+    color: #1f5fd1;
     font-size: 20px;
 }
 
@@ -6276,7 +6276,7 @@ a {
 }
 
 .info-block > span {
-    color: #e85d04;
+    color: #1f5fd1;
     font-size: 12px;
     font-weight: 800;
 }
@@ -6326,7 +6326,7 @@ a {
 }
 
 .footer-links a:hover {
-    color: #e85d04;
+    color: #1f5fd1;
 }
 
 /* RESPONSIVE */
@@ -6429,7 +6429,7 @@ a {
 
 .history-heading > span,
 .history-results-header > div > span {
-    color: #e85d04;
+    color: #1f5fd1;
     font-size: 10px;
     font-weight: 800;
     letter-spacing: 1.5px;
@@ -6467,11 +6467,11 @@ a {
 }
 
 .history-filter:hover {
-    color: #e85d04;
+    color: #1f5fd1;
 }
 
 .history-filter.active-filter {
-    background: #e85d04;
+    background: #1f5fd1;
     color: #fff;
 }
 
@@ -6538,7 +6538,7 @@ a {
 }
 
 .history-route > span {
-    color: #e85d04;
+    color: #1f5fd1;
     font-size: 17px;
 }
 
@@ -6599,7 +6599,7 @@ a {
 .history-action {
     display: inline-block;
     border: 0;
-    background: #e85d04;
+    background: #1f5fd1;
     color: #fff;
     padding: 11px 18px;
     border-radius: 5px;
@@ -6674,7 +6674,7 @@ a {
 
 .tickets-heading > span,
 .ticket-results-header > div > span {
-    color: #e85d04;
+    color: #1f5fd1;
     font-size: 10px;
     font-weight: 800;
     letter-spacing: 1.5px;
@@ -6712,11 +6712,11 @@ a {
 }
 
 .ticket-tabs button:hover {
-    color: #e85d04;
+    color: #1f5fd1;
 }
 
 .ticket-tabs button.active-tab {
-    background: #e85d04;
+    background: #1f5fd1;
     color: #fff;
 }
 
@@ -6785,7 +6785,7 @@ a {
 }
 
 .ticket-route span {
-    color: #e85d04;
+    color: #1f5fd1;
     font-size: 16px;
 }
 
@@ -6877,7 +6877,7 @@ a {
 .ticket-action {
     display: inline-block;
     border: 0;
-    background: #e85d04;
+    background: #1f5fd1;
     color: #fff;
     padding: 11px 18px;
     border-radius: 5px;
@@ -6964,7 +6964,7 @@ a {
     margin: 15px 0;
     padding: 11px 13px;
     background: #f7f7f7;
-    border-left: 3px solid #e85d04;
+    border-left: 3px solid #1f5fd1;
 }
 
 .account-type span {
@@ -7008,7 +7008,7 @@ a {
 }
 
 .saved-routes-heading > span {
-    color: #e85d04;
+    color: #1f5fd1;
     font-size: 10px;
     font-weight: 800;
     letter-spacing: 1.5px;
@@ -7043,7 +7043,7 @@ a {
     justify-content: center;
     border: 1px solid #ddd;
     border-radius: 50%;
-    color: #e85d04;
+    color: #1f5fd1;
     font-size: 20px;
 }
 
@@ -7079,4 +7079,66 @@ a {
     .saved-routes-empty {
         padding: 50px 15px;
     }
+}
+.book-route-button {
+    background: #1f5fd1;
+    color: #fff;
+    border: none;
+    padding: 12px 22px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.book-route-button:hover {
+    background: #c94f00;
+    transform: translateY(-1px);
+}
+
+.book-route-button:disabled {
+    background: #d6d6d6;
+    color: #888;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.route-back-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #171717;
+    color: #fff;
+    text-decoration: none;
+    padding: 11px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    border: 1px solid #171717;
+    transition: 0.2s ease;
+}
+
+.route-back-button:hover {
+    background: #333;
+    color: #fff;
+}
+
+.route-detail-status {
+    background: #f1f1f1;
+    color: #333;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.booking-message {
+    margin-top: 15px;
+    padding: 12px 14px;
+    background: #f7f7f7;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    color: #333;
+    font-size: 14px;
 }

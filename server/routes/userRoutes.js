@@ -9,7 +9,10 @@ const {
     uploadProfileImage,
     getAllUsers,
     createAdminUser,
-    getUserByIdAdmin
+    getUserByIdAdmin,
+    updateUserAdmin,
+    deleteUserAdmin ,
+     getAdminStats
 } = require("../controllers/userController");
 
 const router = express.Router();
@@ -19,8 +22,26 @@ router.put("/profile", protect, updateProfile);
 router.put("/change-password", protect, changePassword);
 router.get("/", protect, authorizeRoles("admin"), getAllUsers);
 router.post("/", protect, authorizeRoles("admin"), createAdminUser);
+router.get(
+    "/admin/stats",
+    protect,
+    authorizeRoles("admin"),
+    getAdminStats
+);
 router.get("/:id", protect, authorizeRoles("admin"), getUserByIdAdmin);
+router.put(
+    "/:id",
+    protect,
+    authorizeRoles("admin"),
+    updateUserAdmin
+);
 
+router.delete(
+    "/:id",
+    protect,
+    authorizeRoles("admin"),
+    deleteUserAdmin
+);
 router.put(
     "/profile/image",
     protect,
