@@ -7,7 +7,7 @@ function AdminNotifications() {
     const [form, setForm] = useState({
         title: "",
         message: "",
-        type: "info"
+        type: "System"
     });
 
     const [loading, setLoading] = useState(false);

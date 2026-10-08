@@ -1,20 +1,27 @@
 const Notification = require("../models/Notification");
 
+// Get notifications for logged-in user
 const getNotifications = async (req, res) => {
     try {
         const notifications = await Notification.find({
             user: req.user._id
         }).sort({ createdAt: -1 });
 
-        res.status(200).json({ notifications });
+        res.status(200).json({
+            notifications
+        });
+
     } catch (error) {
         console.error("Get notifications error:", error);
-        res.status(500).json({ message: "Server error" });
+
+        res.status(500).json({
+            message: "Server error"
+        });
     }
 };
 
 
-// ADMIN: Send notification to users
+// Create notification for all users
 const createNotification = async (req, res) => {
     try {
         const { title, message, type } = req.body;
@@ -35,21 +42,25 @@ const createNotification = async (req, res) => {
             });
         }
 
-        const notifications = users.map((user) => ({
-            user: user._id,
-            title,
-            message,
-            type: type || "info",
-            read: false
-        }));
+        // Create one notification for every user
+        for (const user of users) {
 
-        await Notification.insertMany(notifications);
+            await Notification.create({
+                user: user._id,
+                title: title,
+                message: message,
+                type: type || "System",
+                read: false
+            });
+
+        }
 
         res.status(201).json({
             message: `Notification sent to ${users.length} users`
         });
 
     } catch (error) {
+
         console.error("Create notification error:", error);
 
         res.status(500).json({
@@ -60,12 +71,21 @@ const createNotification = async (req, res) => {
 };
 
 
+// Mark one notification as read
 const markAsRead = async (req, res) => {
     try {
-        const notification = await Notification.findOne({
-            _id: req.params.id,
-            user: req.user._id
-        });
+        const notification = await Notification.findOneAndUpdate(
+            {
+                _id: req.params.id,
+                user: req.user._id
+            },
+            {
+                read: true
+            },
+            {
+                new: true
+            }
+        );
 
         if (!notification) {
             return res.status(404).json({
@@ -73,21 +93,23 @@ const markAsRead = async (req, res) => {
             });
         }
 
-        notification.read = true;
-        await notification.save();
-
         res.status(200).json({
             message: "Notification marked as read",
             notification
         });
 
     } catch (error) {
-        console.error("Mark notification error:", error);
-        res.status(500).json({ message: "Server error" });
+
+        console.error("Mark notification read error:", error);
+
+        res.status(500).json({
+            message: "Server error"
+        });
     }
 };
 
 
+// Mark all notifications as read
 const markAllAsRead = async (req, res) => {
     try {
         await Notification.updateMany(
@@ -105,8 +127,12 @@ const markAllAsRead = async (req, res) => {
         });
 
     } catch (error) {
-        console.error("Mark all notifications error:", error);
-        res.status(500).json({ message: "Server error" });
+
+        console.error("Mark all notifications read error:", error);
+
+        res.status(500).json({
+            message: "Server error"
+        });
     }
 };
 

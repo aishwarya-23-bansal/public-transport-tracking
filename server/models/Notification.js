@@ -7,21 +7,25 @@ const notificationSchema = new mongoose.Schema(
             ref: "User",
             required: true
         },
+
         title: {
             type: String,
             required: true,
             trim: true
         },
+
         message: {
             type: String,
             required: true,
             trim: true
         },
+
         type: {
             type: String,
             enum: ["Account", "Booking", "Trip", "System"],
             default: "System"
         },
+
         read: {
             type: Boolean,
             default: false
@@ -32,4 +36,9 @@ const notificationSchema = new mongoose.Schema(
     }
 );
 
-module.exports = mongoose.model("Notification", notificationSchema);
+const Notification = mongoose.model(
+    "Notification",
+    notificationSchema
+);
+
+module.exports = Notification;

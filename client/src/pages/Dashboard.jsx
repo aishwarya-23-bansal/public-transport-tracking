@@ -34,6 +34,7 @@ function Dashboard() {
                     <Link to="/tickets">Tickets</Link>
                     <Link to="/history">History</Link>
                     <Link to="/alerts">Updates</Link>
+                    <Link to="/notifications">Notifications</Link>
                 </div>
 
                 <Link to="/profile" className="profile-nav">
