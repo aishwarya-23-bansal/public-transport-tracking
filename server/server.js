@@ -9,6 +9,7 @@ const ticketRoutes = require("./routes/ticketRoutes");
 const notificationRoutes = require("./routes/notificationRoutes");
 const tripRoutes = require("./routes/tripRoutes");
 const savedRouteRoutes = require("./routes/savedRouteRoutes");
+const trackingRoutes = require("./routes/trackingRoutes");
 const app=express();
 const alertRoutes = require("./routes/alertRoutes");
 app.use(cors());
@@ -28,6 +29,7 @@ app.use("/api/tickets", ticketRoutes);
 app.use("/api/notifications", notificationRoutes);
 app.use("/api/alerts", alertRoutes);
 app.use("/api/trips", tripRoutes);
+app.use("/api/tracking", trackingRoutes);
 app.use("/api/saved-routes", savedRouteRoutes);
 const port=process.env.PORT || 8000;
 app.listen(port,()=>{

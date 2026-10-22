@@ -1,0 +1,125 @@
+
+/* TransitGo commuter + operator refresh. Scoped to these two areas only. */
+.commuter-home {
+  min-height: 100vh;
+  background: #f4f7fb;
+  color: #172033;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+.commuter-home .main-nav {
+  position: sticky; top: 0; z-index: 20; min-height: 76px; padding: 0 clamp(20px, 5vw, 76px);
+  display:flex; align-items:center; justify-content:space-between; gap:24px;
+  background:rgba(255,255,255,.94); border-bottom:1px solid #e7ebf2; backdrop-filter:blur(14px);
+}
+.commuter-home .brand { text-decoration:none; font-size:25px; font-weight:850; letter-spacing:-1.1px; color:#14213d; }
+.commuter-home .brand span { color:#2463eb; }
+.commuter-home .nav-links { display:flex; align-items:center; gap:5px; flex-wrap:wrap; }
+.commuter-home .nav-links a, .commuter-home .profile-nav {
+  text-decoration:none; color:#657087; font-size:13px; font-weight:650; padding:10px 12px; border-radius:10px; transition:.2s ease;
+}
+.commuter-home .nav-links a:hover, .commuter-home .nav-links a.active { background:#edf3ff; color:#2459d3; }
+.commuter-home .profile-nav { background:#172b4d; color:white; padding:11px 17px; }
+.commuter-home main { max-width:1240px; width:calc(100% - 48px); margin:0 auto; padding:36px 0 60px; }
+.commuter-home .travel-hero {
+  display:grid; grid-template-columns:1fr 1.05fr; align-items:center; gap:38px;
+  padding:clamp(28px,5vw,58px); border-radius:28px; color:white; overflow:hidden;
+  background:radial-gradient(circle at 88% 12%,rgba(109,157,255,.35),transparent 34%),linear-gradient(125deg,#10264d 0%,#174a9d 57%,#286ce5 100%);
+  box-shadow:0 22px 55px rgba(28,69,139,.18);
+}
+.commuter-home .hero-label { display:inline-flex; padding:8px 12px; border:1px solid rgba(255,255,255,.25); background:rgba(255,255,255,.1); border-radius:99px; font-size:10px; font-weight:800; letter-spacing:1.7px; }
+.commuter-home .hero-content h1 { margin:22px 0 16px; color:white; font-size:clamp(38px,4.7vw,62px); line-height:1.04; letter-spacing:-2.5px; font-weight:800; }
+.commuter-home .hero-content p { max-width:430px; color:#d8e5ff; line-height:1.75; font-size:15px; }
+.commuter-home .route-search { background:white; color:#172033; border:1px solid rgba(255,255,255,.7); border-radius:20px; padding:25px; box-shadow:0 18px 45px rgba(5,20,49,.18); }
+.commuter-home .search-heading { display:flex; flex-direction:column; gap:5px; margin-bottom:20px; }
+.commuter-home .search-heading strong { font-size:20px; letter-spacing:-.5px; }
+.commuter-home .search-heading span { color:#8490a4; font-size:12px; }
+.commuter-home .route-search form { display:grid; grid-template-columns:1fr 25px 1fr; gap:12px; align-items:end; }
+.commuter-home .search-field { min-width:0; }
+.commuter-home .search-field label { display:block; margin-bottom:8px; color:#7c879a; font-size:10px; font-weight:800; letter-spacing:1px; }
+.commuter-home .search-field input { width:100%; min-width:0; padding:13px 12px; border:1px solid #e1e7f0; border-radius:11px; outline:none; color:#172033; background:#f8faff; font-size:13px; }
+.commuter-home .search-field input:focus { border-color:#3978ed; box-shadow:0 0 0 3px #e8f0ff; }
+.commuter-home .search-arrow { align-self:center; color:#4778d7; font-size:20px; text-align:center; padding-top:19px; }
+.commuter-home .route-search button { grid-column:1/-1; border:0; border-radius:11px; background:#2563eb; color:white; padding:14px 18px; font-weight:750; cursor:pointer; box-shadow:0 7px 15px rgba(37,99,235,.2); }
+.commuter-home .route-search button:hover { background:#174fc5; transform:translateY(-1px); }
+.commuter-home .quick-section { padding-top:42px; }
+.commuter-home .section-heading > span { color:#2866db; font-size:10px; font-weight:850; letter-spacing:1.8px; }
+.commuter-home .section-heading h2 { margin:8px 0 22px; color:#18243b; font-size:28px; letter-spacing:-1px; font-weight:800; }
+.commuter-home .quick-links { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:15px; }
+.commuter-home .quick-link { display:flex; align-items:center; justify-content:space-between; gap:16px; min-height:120px; padding:22px; border:1px solid #e6ebf3; border-radius:17px; background:white; text-decoration:none; box-shadow:0 5px 18px rgba(26,42,72,.035); transition:transform .2s,border-color .2s,box-shadow .2s; }
+.commuter-home .quick-link:hover { transform:translateY(-3px); border-color:#bfd2ff; box-shadow:0 13px 28px rgba(26,60,120,.09); }
+.commuter-home .quick-link strong { display:block; color:#1a2942; font-size:15px; margin-bottom:7px; }
+.commuter-home .quick-link p { color:#7b879a; font-size:12px; line-height:1.6; }
+.commuter-home .quick-link > span { display:grid; place-items:center; flex:0 0 34px; height:34px; border-radius:10px; background:#eef4ff; color:#2866db; font-size:20px; }
+.commuter-home .info-section { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:26px; }
+.commuter-home .info-block { display:flex; gap:15px; padding:20px 4px; border-top:1px solid #e1e7f0; }
+.commuter-home .info-block > span { color:#8da8df; font-size:13px; font-weight:850; }
+.commuter-home .info-block h3 { margin:0 0 7px; color:#1a2942; font-size:15px; }
+.commuter-home .info-block p { color:#7b879a; font-size:12px; line-height:1.7; }
+.commuter-home .commuter-footer { display:flex; justify-content:space-between; align-items:center; gap:20px; padding:28px clamp(24px,5vw,76px); border-top:1px solid #e5eaf2; background:white; }
+.commuter-home .commuter-footer p { margin-top:7px; color:#7b879a; font-size:12px; }
+.commuter-home .footer-links { display:flex; gap:20px; }
+.commuter-home .footer-links a { color:#657087; text-decoration:none; font-size:12px; font-weight:650; }
+
+/* Operator dashboard */
+.operator-page { min-height:100vh; background:#f4f7fb; color:#172033; font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+.operator-page .navbar { height:76px; padding:0 clamp(20px,5vw,76px); background:white; border-bottom:1px solid #e6ebf3; }
+.operator-page .dashboard-logo { font-size:25px; font-weight:850; letter-spacing:-1px; color:#14213d; }
+.operator-page .dashboard-logo span { color:#2866db; }
+.operator-page .nav-right { gap:10px; }
+.operator-page .profile-link, .operator-page .back-link { display:inline-flex; align-items:center; padding:10px 14px; border-radius:10px; text-decoration:none; font-size:13px; font-weight:700; }
+.operator-page .profile-link { color:#59667d; }
+.operator-page .back-link { color:#fff; background:#172b4d; }
+.operator-page .operator-content { width:calc(100% - 48px); max-width:1240px; margin:0 auto; padding:38px 0 64px; }
+.operator-page .operator-heading { display:flex; justify-content:space-between; align-items:center; margin-bottom:27px; }
+.operator-page .operator-heading h1 { margin:0 0 9px; color:#17243c; font-size:clamp(29px,3vw,39px); letter-spacing:-1.4px; font-weight:850; }
+.operator-page .operator-heading p { color:#77849a; font-size:14px; line-height:1.6; }
+.operator-page .operator-stats, .operator-page .passenger-summary { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:15px; margin-bottom:28px; }
+.operator-page .operator-stat { padding:22px 23px; border:1px solid #e6ebf3; border-radius:17px; background:white; box-shadow:0 5px 18px rgba(26,42,72,.035); }
+.operator-page .operator-stat span { display:block; color:#7b879a; font-size:12px; font-weight:650; }
+.operator-page .operator-stat strong { display:block; margin-top:13px; color:#1a2942; font-size:30px; line-height:1; font-weight:850; letter-spacing:-1px; }
+.operator-page .operator-section { margin-top:25px; padding:25px; border:1px solid #e6ebf3; border-radius:19px; background:white; box-shadow:0 5px 18px rgba(26,42,72,.035); }
+.operator-page .section-header h2 { margin:0 0 7px; color:#1a2942; font-size:20px; font-weight:800; letter-spacing:-.5px; }
+.operator-page .section-header p { color:#7b879a; font-size:12px; }
+.operator-page .operator-route-list { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:15px; margin-top:22px; }
+.operator-page .trip-card { min-width:0; padding:21px; border:1px solid #e7ecf4; border-radius:15px; background:#fbfcff; }
+.operator-page .trip-header { display:flex; justify-content:space-between; align-items:flex-start; gap:12px; }
+.operator-page .route-label { color:#2866db; font-size:10px; font-weight:850; letter-spacing:1.3px; }
+.operator-page .trip-header h2 { margin:7px 0 0; color:#1a2942; font-size:19px; font-weight:800; }
+.operator-page .trip-status, .operator-page .schedule-status { display:inline-flex; padding:6px 9px; border-radius:99px; background:#e9f8ef; color:#187747; font-size:10px; font-weight:800; white-space:nowrap; }
+.operator-page .trip-route { display:grid; grid-template-columns:1fr 24px 1fr; align-items:center; gap:10px; padding:20px 0; margin-top:8px; border-bottom:1px solid #e8edf4; }
+.operator-page .trip-route > div:not(.trip-arrow) { min-width:0; }
+.operator-page .trip-route span, .operator-page .trip-information span { display:block; margin-bottom:7px; color:#8a95a7; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.6px; }
+.operator-page .trip-route strong { display:block; overflow-wrap:anywhere; color:#24334d; font-size:13px; }
+.operator-page .trip-arrow { text-align:center; color:#4778d7; font-size:19px; }
+.operator-page .trip-information { display:flex; flex-wrap:wrap; gap:22px; padding-top:17px; }
+.operator-page .trip-information strong { color:#293850; font-size:13px; }
+.operator-page .operator-actions { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:15px; margin-top:24px; }
+.operator-page .operator-action { display:block; padding:22px; border:1px solid #e6ebf3; border-radius:16px; background:white; text-decoration:none; box-shadow:0 5px 18px rgba(26,42,72,.035); transition:transform .2s,border-color .2s; }
+.operator-page .operator-action:hover { transform:translateY(-3px); border-color:#bfd2ff; }
+.operator-page .operator-action h3 { margin:0 0 8px; color:#1a2942; font-size:15px; font-weight:800; }
+.operator-page .operator-action p { min-height:40px; color:#7b879a; font-size:12px; line-height:1.6; }
+.operator-page .operator-action span { display:inline-block; margin-top:16px; color:#2866db; font-size:12px; font-weight:800; }
+.operator-page .operator-empty { padding:30px; border:1px dashed #d6deeb; border-radius:15px; background:#fbfcff; }
+.operator-page .operator-empty h3 { margin:0 0 7px; color:#263651; }
+.operator-page .operator-empty p { color:#77849a; font-size:13px; line-height:1.6; }
+.operator-page button { border-radius:10px; }
+@media (max-width:900px) {
+ .commuter-home .main-nav { flex-wrap:wrap; padding-top:15px; padding-bottom:15px; }
+ .commuter-home .nav-links { order:3; width:100%; overflow-x:auto; flex-wrap:nowrap; }
+ .commuter-home .travel-hero { grid-template-columns:1fr; }
+ .commuter-home .quick-links { grid-template-columns:repeat(2,minmax(0,1fr)); }
+ .operator-page .operator-stats { grid-template-columns:repeat(2,minmax(0,1fr)); }
+ .operator-page .operator-actions { grid-template-columns:repeat(2,minmax(0,1fr)); }
+}
+@media (max-width:600px) {
+ .commuter-home main,.operator-page .operator-content { width:calc(100% - 28px); padding-top:22px; }
+ .commuter-home .travel-hero { padding:25px 18px; border-radius:20px; }
+ .commuter-home .route-search { padding:18px; }
+ .commuter-home .route-search form { grid-template-columns:1fr; }
+ .commuter-home .search-arrow { display:none; }
+ .commuter-home .quick-links,.commuter-home .info-section { grid-template-columns:1fr; }
+ .commuter-home .commuter-footer { align-items:flex-start; flex-direction:column; }
+ .operator-page .operator-route-list,.operator-page .operator-actions { grid-template-columns:1fr; }
+ .operator-page .operator-stats,.operator-page .passenger-summary { grid-template-columns:repeat(2,minmax(0,1fr)); }
+ .operator-page .operator-section { padding:16px; }
+}

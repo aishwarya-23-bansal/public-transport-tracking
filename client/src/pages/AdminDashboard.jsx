@@ -153,7 +153,11 @@ function AdminDashboard() {
                         </span>
                     </Link>
 
-
+<Link to="/tracking" className="admin-feature-card">
+    <h3>Bus Tracking</h3>
+    <p>Monitor bus locations, journey progress and estimated arrival times.</p>
+    <span>Manage Tracking →</span>
+</Link>
                     <Link
                         to="/admin/operators"
                         className="admin-action"

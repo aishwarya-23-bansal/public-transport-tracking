@@ -7142,3 +7142,65 @@ a {
     color: #333;
     font-size: 14px;
 }
+
+/* Match Bus Tracking card with existing Admin Dashboard cards */
+.admin-feature-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 28px 24px;
+    min-height: 150px;
+    box-sizing: border-box;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    color: #172033;
+    text-decoration: none;
+    box-shadow: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.admin-feature-card:hover {
+    border-color: #bfdbfe;
+    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.06);
+    transform: none;
+}
+
+.admin-feature-card .admin-feature-icon {
+    width: auto;
+    height: auto;
+    margin: 0 0 12px;
+    padding: 0;
+    background: transparent;
+    font-size: 28px;
+}
+
+.admin-feature-card h3 {
+    margin: 0 0 10px;
+    font-size: 17px;
+    color: #172033;
+}
+
+.admin-feature-card p {
+    margin: 0 0 20px;
+    color: #718096;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.admin-feature-card > span {
+    margin-top: 0;
+    color: #3478f6;
+    font-size: 13px;
+    font-weight: 700;
+}
+/* TransitGo visual refresh: shared polish for commuter and operator pages */
+:root{font-synthesis:none;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+button,a,input,select,textarea{transition-color:.18s ease}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #93b4fd;outline-offset:2px}
+.commuter-home,.operator-page,.dashboard{background:#f5f7fb}
+.commuter-home .main-nav,.operator-page .navbar,.dashboard .navbar{box-shadow:0 1px 0 #e8edf5;background:#fff}
+.quick-link,.operator-action,.admin-action,.admin-feature-card,.tracking-card{transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease}
+.quick-link:hover,.operator-action:hover{border-color:#c8d9ff;box-shadow:0 8px 24px #1e3a5f0d}

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../App.css";
+import "../commuter-operator-refresh.css";
 
 function Dashboard() {
     const navigate = useNavigate();
@@ -31,6 +32,7 @@ function Dashboard() {
                 <div className="nav-links">
                     <Link to="/dashboard" className="active">Home</Link>
                     <Link to="/routes">Routes</Link>
+                        <Link to="/tracking">Track Bus</Link>
                     <Link to="/tickets">Tickets</Link>
                     <Link to="/history">History</Link>
                     <Link to="/alerts">Updates</Link>
@@ -110,7 +112,14 @@ function Dashboard() {
                     </div>
 
                     <div className="quick-links">
+                    <Link to="/tracking" className="quick-link">
+                        <div>
+                            <strong>Track Bus</strong>
+                            <p>Check bus location and estimated arrival time</p>
+                        </div>
 
+                        <span>→</span>
+                    </Link>
                         <Link to="/tickets" className="quick-link">
                             <div>
                                 <strong>My Tickets</strong>

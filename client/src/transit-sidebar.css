@@ -1,0 +1,40 @@
+.transit-app-shell { min-height: 100vh; }
+.transit-app-content { min-width: 0; min-height: 100vh; }
+.transit-app-shell.has-transit-sidebar .transit-app-content { margin-left: 252px; width: calc(100% - 252px); }
+.transit-sidebar { position: fixed; z-index: 100; inset: 0 auto 0 0; width: 252px; display: flex; flex-direction: column; padding: 27px 16px 18px; background: #101d35; color: #d5def0; border-right: 1px solid #22314c; font-family: Inter, ui-sans-serif, system-ui, sans-serif; }
+.transit-sidebar-brand { padding: 0 14px 30px; color: #fff; font-size: 26px; line-height: 1; font-weight: 850; letter-spacing: -1.1px; text-decoration: none; }
+.transit-sidebar-brand span { color: #78a6ff; }
+.transit-sidebar-caption { margin: 0 14px 12px; color: #8393b2; font-size: 10px; font-weight: 800; letter-spacing: 1.4px; }
+.transit-sidebar-nav { display: grid; gap: 5px; }
+.transit-sidebar-nav a, .transit-sidebar-bottom a { display: flex; align-items: center; gap: 13px; padding: 12px 14px; border-radius: 11px; color: #bdc9df; text-decoration: none; font-size: 13px; font-weight: 650; transition: background .18s, color .18s; }
+.transit-sidebar-nav a:hover, .transit-sidebar-bottom a:hover { background: #1c2c49; color: #fff; }
+.transit-sidebar-nav a.selected { background: #2d64d8; color: white; box-shadow: 0 7px 18px #0a1530; }
+.transit-sidebar-icon { display: inline-grid; width: 22px; height: 22px; place-items: center; font-size: 18px; line-height: 1; }
+.transit-sidebar-bottom { display: grid; gap: 4px; margin-top: auto; padding-top: 18px; border-top: 1px solid #293751; }
+.transit-sidebar-bottom a { font-size: 12px; }
+/* Preserve the existing page layouts while making room for the persistent sidebar. */
+.transit-app-content .commuter-home .main-nav,
+.transit-app-content .operator-page > .navbar,
+.transit-app-content .notifications-page > .navbar { padding-left: 28px; padding-right: 28px; }
+.transit-app-content .commuter-home main { width: calc(100% - 56px); }
+.transit-app-content .operator-page .operator-content { width: calc(100% - 56px); }
+.transit-app-content .notifications-content { width: calc(100% - 56px); max-width: 1100px; margin: 0 auto; }
+@media (max-width: 850px) {
+ .transit-sidebar { width: 76px; padding: 22px 8px 12px; }
+ .transit-sidebar-brand { padding: 0 0 28px; text-align: center; font-size: 0; }
+ .transit-sidebar-brand span { font-size: 22px; }
+ .transit-sidebar-caption { display: none; }
+ .transit-sidebar-nav a, .transit-sidebar-bottom a { justify-content: center; padding: 12px 5px; font-size: 0; gap: 0; }
+ .transit-sidebar-icon { font-size: 19px; }
+ .transit-app-shell.has-transit-sidebar .transit-app-content { margin-left: 76px; width: calc(100% - 76px); }
+}
+@media (max-width: 520px) {
+ .transit-sidebar { width: 58px; }
+ .transit-sidebar-brand span { font-size: 18px; }
+ .transit-app-shell.has-transit-sidebar .transit-app-content { margin-left: 58px; width: calc(100% - 58px); }
+ .transit-app-content .commuter-home main, .transit-app-content .operator-page .operator-content, .transit-app-content .notifications-content { width: calc(100% - 24px); }
+}
+
+/* Navigation now lives in the persistent sidebar, not the crowded top bar. */
+.transit-app-content .commuter-home .nav-links { display: none; }
+.transit-app-content .commuter-home .main-nav { justify-content: space-between; }
